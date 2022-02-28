@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/style.css">
+        <title>{% block title %}{% endblock %} - Seashell Anatomy</title>
+    </head>
+    <body>
+        <nav>
+            <div class="company"><a href="/">Seashell Resonance</a></div>
+            <a href="/about">About</a>
+            <a href="/playlist_gen">Playlist Generator</a>
+        </nav>
+        <div class="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

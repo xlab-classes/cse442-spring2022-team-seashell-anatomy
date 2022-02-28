@@ -1,0 +1,14 @@
+{% extends "nav.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="member_list">
+    {% for member in members %}
+    <div class="member">
+        <img src="/static/images/{{ member.lower().replace(' ', '_') }}.jpg">
+        <div class="name">{{ member }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

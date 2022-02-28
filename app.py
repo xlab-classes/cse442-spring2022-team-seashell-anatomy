@@ -8,12 +8,24 @@ def main():
 
 @app.route('/about')
 def about():
-    members = ['Emil Kovacev', 'Kazi Shadman', 'Steven Carter', 'Jeffrey Naranjo', 'Adam Russell']
+    members = [
+        {'name':'Emil Kovacev', 'major': 'Computer Science'},
+        {'name': 'Kazi Shadman', 'major': 'Computer Science'},
+        {'name': 'Steven Carter', 'major': 'Computer Science'},
+        {'name': 'Jeffrey Naranjo', 'major': 'Computer Engineering'}, 
+        {'name': 'Adam Russell', 'major': 'Computer Science'}
+    ]
     return render_template('about.html', members=members)
 
 @app.route('/playlist_gen')
 def playlist_gen():
-    return render_template('playlist_gen.html')
+    categories = [
+        {'name': 'catA', 'type': 'checkbox', 'options': ['option1', 'option2']},
+        {'name': 'catB', 'type': 'radio', 'options': ['option1', 'option2']},
+        {'name': 'catC', 'type': 'range', 'options': ['option1', 'option2']},
+        {'name': 'catD', 'type': 'text', 'options': ['option1', 'option2']},
+    ]
+    return render_template('playlist_gen.html', categories=categories)
 
 # serves static files (we can have nginx do this in the future if we want)
 @app.route('/static/<path>')

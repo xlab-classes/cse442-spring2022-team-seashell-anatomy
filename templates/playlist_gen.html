@@ -1,0 +1,21 @@
+{% extends "nav.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Playlist Generator</h1>
+    <form action="/generate" method="get">
+        {% for category in categories %}
+            <h2 class="category-header">{{ category.name }}</h2>
+            <div class="category">
+                {% for option in category.options %}
+                    <input type="{{ category.type }}" 
+                            id="{{ option }}" name="{{ category.name }}" value="{{ option }}">
+                    <label for="{{ option }}">{{ option }}</label>
+                {% endfor %}
+            </div><br>
+        {% endfor %}
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

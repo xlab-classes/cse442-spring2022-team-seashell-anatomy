@@ -1,0 +1,147 @@
+:root {
+    --text-white: white;
+    --text-white-hover: rgb(201, 201, 201);
+    --text-black: rgb(50, 50, 50);
+    --text-green: rgb(122, 231, 48);
+    --text-green-hover: rgb(71, 204, 19);
+
+    --fg-black: rgb(50, 50, 50);
+    --fg-green: rgb(71, 204, 19);
+    --fg-green-hover: rgb(66, 194, 16);
+
+    --bg-black: rgb(50, 50, 50);
+    --bg-dark-black: rgb(36, 36, 36);
+    --bg-green: rgb(122, 231, 48);
+    --bg-green-hover: rgb(71, 204, 19);
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: var(--bg-black);
+    margin: 0;
+}
+
+/* navigation */
+
+nav {
+    color: var(--text-white);
+    background-color: var(--bg-dark-black);
+    padding: 20px;
+}
+
+nav .company {
+    display: inline-block;
+}
+
+nav .company a {
+    color:rgb(122, 231, 48);
+    font-weight: 700;
+}
+
+nav .company a:hover {
+    color:rgb(71, 204, 19);
+}
+
+nav a {
+    display: inline-block;
+    padding-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--text-white-hover);
+}
+
+/* content */
+
+.title-group {
+    text-align: center;
+}
+
+.title-group h1 {
+    font-size: 3rem;
+}
+
+.content {
+    margin: 40px;
+}
+
+.member_list .member {
+    background-color: rgb(51, 51, 51);
+    display: inline-block;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100px;
+}
+.member .name {
+    color: var(--text-green);
+    font-weight: 700;
+    margin: 10px 0;
+    font-size: 1.25rem;
+    text-align: center;
+    display: block;
+}
+
+.member .major {
+    color: var(--text-white);
+    font-weight: 300;
+    margin: 10px 0;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+}
+
+.button-group {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.big-button {
+    color: var(--text-white);
+    background-color: var(--fg-green);
+    text-decoration: none;
+    padding: 40px;
+    font-size:4rem;
+    font-weight: 700;
+}
+
+.big-button:hover {
+    background-color: var(--fg-green-hover);
+}
+
+form .category {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form .category-header {
+    color: var(--text-green);
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* form .category .box {
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--bg-dark-black);
+    margin: -2px -2px 0 0;
+}
+
+form .category .box:hover {
+    background-color: var(--bg-dark-black);
+    cursor: pointer;
+} */

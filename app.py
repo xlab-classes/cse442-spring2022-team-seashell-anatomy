@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from api import res_get_playlist
+from flask import Flask, render_template, request
+
 
 app = Flask(__name__)
 
@@ -32,3 +34,9 @@ def playlist_gen():
 def render_static(path):
     with open(f'static/{path}') as file:
         return file
+
+@app.route('/generate')
+def generator():
+    entries = request.query_string()
+    return render_template('generated.html')
+

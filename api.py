@@ -1,25 +1,17 @@
-from typing import Dict
 from pip import main
 
+valid_features = ["genre_list", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instumentalness", "liveness", "valence", "tempo", "duration_ms", "time_signature"] #temporary
 
-valid_features = ["acousticness", "danceability", "energy", "instrumentalness", "tempo", "valence"] #temporary
-
-def res_get_playlist(in_dict: Dict):
+def res_get_playlist(in_dict: dict) -> list:
     cleaned = {}
-    for para in in_dict.keys():
-        if para == "genres":
-            genres = []
-            for g in in_dict["genres"]:
-                #Check if genre is listed by Spotify
-                #If so
-                cleaned["genres"].append(g)
-                #else signal to ser that the genre is invalid and continue without a genre
-            if genres: cleaned["genres"] = genres
-        elif para in valid_features:
-            cleaned[para] = in_dict[para]
-        else:
-            print("invalid entry: " + para)
+    for feature in valid_features:
+        if feature == "genre_list" and in_dict[feature]: cleaned[feature] = in_dict[feature] #filter list
+        elif in_dict[feature]: cleaned[feature] = in_dict[feature]
+        else: print("Feature, " + feature + ", not found in input")
     if not cleaned:
-        return -1
+        return []
     #Get playlist with cleaned dictionary?
-    return 0
+    return [{"test": 42.0}]
+
+def res_add_rating(rating: int, description: str):
+    return

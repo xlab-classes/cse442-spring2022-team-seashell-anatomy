@@ -36,7 +36,12 @@ def render_static(path):
         return file
 
 @app.route('/generate')
-def generator():
-    entries = request.query_string()
-    return render_template('generated.html')
+def generate():
+    entries = request.query_string().split('&')
+    in_dict = {}
+    for e in entries:
+        et = e.split('=')
+        in_dict[et[0]] = et[1]
+    playlist = res_get_playlist(in_dict)
+    return render_template('generate.html')
 

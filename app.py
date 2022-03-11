@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -32,3 +32,9 @@ def playlist_gen():
 def render_static(path):
     with open(f'static/{path}') as file:
         return file
+
+@app.route('/generate')
+def generate():
+    for key in request.args.keys():
+        print(key, request.args[key])
+    return str(request.args.to_dict(flat=False))

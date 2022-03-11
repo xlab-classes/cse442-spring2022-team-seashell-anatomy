@@ -37,6 +37,10 @@ def render_static(path):
 
 @app.route('/generate')
 def generate():
-    playlist = res_get_playlist(dict(request.args))
-    return render_template('generate.html')
+    playlist = res_get_playlist(request.args.to_dict(flat=False))
+    return render_template('generate.html', playlist = playlist)
+
+@app.route('/rating')
+def rating():
+    return render_template('rating.html')
 

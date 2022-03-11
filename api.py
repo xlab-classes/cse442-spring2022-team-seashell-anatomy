@@ -4,14 +4,14 @@ valid_features = ["genre_list", "danceability", "energy", "key", "loudness", "mo
 
 def res_get_playlist(in_dict):
     cleaned = {}
+    if in_dict: return []
     for feature in valid_features:
         if feature == "genre_list" and feature in in_dict: cleaned[feature] = in_dict[feature] #filter list
         elif feature in in_dict: cleaned[feature] = in_dict[feature]
-        else: print("Feature, " + feature + ", not found in input")
     if not cleaned:
         return []
     #Get playlist with cleaned dictionary?
-    return [{"test": 42.0}]
+    return [{}]
 
 def res_add_rating(rating: int, description: str):
     #Enter rating into a database?

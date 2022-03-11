@@ -37,11 +37,6 @@ def render_static(path):
 
 @app.route('/generate')
 def generate():
-    entries = request.query_string().split('&')
-    in_dict = {}
-    for e in entries:
-        et = e.split('=')
-        in_dict[et[0]] = et[1]
-    playlist = res_get_playlist(in_dict)
+    playlist = res_get_playlist(dict(request.args))
     return render_template('generate.html')
 

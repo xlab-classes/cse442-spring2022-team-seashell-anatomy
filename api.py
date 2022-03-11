@@ -5,8 +5,8 @@ valid_features = ["genre_list", "danceability", "energy", "key", "loudness", "mo
 def res_get_playlist(in_dict):
     cleaned = {}
     for feature in valid_features:
-        if feature == "genre_list" and in_dict[feature]: cleaned[feature] = in_dict[feature] #filter list
-        elif in_dict[feature]: cleaned[feature] = in_dict[feature]
+        if feature == "genre_list" and feature in in_dict: cleaned[feature] = in_dict[feature] #filter list
+        elif feature in in_dict: cleaned[feature] = in_dict[feature]
         else: print("Feature, " + feature + ", not found in input")
     if not cleaned:
         return []

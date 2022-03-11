@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Playlist Generator</h1>
-    <form action="/generate" method="get">
+    <form action="/generate" method="GET">
         {% for category in categories %}
             <h2 class="category-header">{{ category.name }}</h2>
             <input type="range" id="{{ option }}" name="{{ category.name }}">

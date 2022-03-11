@@ -7,13 +7,8 @@
     <form action="/generate" method="get">
         {% for category in categories %}
             <h2 class="category-header">{{ category.name }}</h2>
-            <div class="category">
-                {% for option in category.options %}
-                    <input type="{{ category.type }}" 
-                            id="{{ option }}" name="{{ category.name }}" value="{{ option }}">
-                    <label for="{{ option }}">{{ option }}</label>
-                {% endfor %}
-            </div><br>
+            <input type="range" id="{{ option }}" name="{{ category.name }}">
+            <label for="{{ option }}">{{ option }}</label><br>
         {% endfor %}
 
         <input type="submit" value="Submit">

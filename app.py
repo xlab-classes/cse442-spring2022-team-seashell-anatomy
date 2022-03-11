@@ -20,10 +20,8 @@ def about():
 @app.route('/playlist_gen')
 def playlist_gen():
     categories = [
-        {'name': 'catA', 'type': 'checkbox', 'options': ['option1', 'option2']},
-        {'name': 'catB', 'type': 'radio', 'options': ['option1', 'option2']},
-        {'name': 'catC', 'type': 'range', 'options': ['option1', 'option2']},
-        {'name': 'catD', 'type': 'text', 'options': ['option1', 'option2']},
+        {'name': 'catA', 'min': 10, 'max': 12},
+        {'name': 'catB', 'min': 10, 'max': 13}
     ]
     return render_template('playlist_gen.html', categories=categories)
 

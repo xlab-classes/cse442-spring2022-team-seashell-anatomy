@@ -44,7 +44,7 @@ song_data = Table(
 meta.create_all(engine)
 
 
-#print(len(spotify.track_name))
+
 
 obj_list = []
 

@@ -35,4 +35,4 @@ def render_static(path):
 def generate():
     for key in request.args.keys():
         print(key, request.args[key])
-    return str(request.args.to_dict(flat=False))
+    return str(request.args.to_dict())

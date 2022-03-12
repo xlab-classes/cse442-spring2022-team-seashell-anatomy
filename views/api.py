@@ -1,5 +1,4 @@
 from typing import Dict
-from pip import main
 
 
 valid_features = ["acousticness", "danceability", "energy", "instrumentalness", "tempo", "valence"] #temporary

@@ -34,6 +34,7 @@ def get_data(year, number_of_songs):
 
         #adding author's list of genres
         g_list = search_data.artist(i['album']['artists'][0]['id'])['genres']
+        #Converts genre list to a pickle type.
         pickled = pickle.dumps(g_list)
         full_dictionary.update({"genre_list":pickled})
 

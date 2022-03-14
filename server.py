@@ -40,4 +40,5 @@ def playlist_gen():
 def generate():
     for key in request.args.keys():
         print(key, request.args[key])
-    return str(request.args.to_dict())
+    playlist = songs.get_song_by_id('0fv2KH6hac06J86hBUTcSf')
+    return render_template('playlist_ret.html', playlist=playlist)

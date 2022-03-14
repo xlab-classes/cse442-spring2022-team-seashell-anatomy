@@ -1,0 +1,11 @@
+{% extends "nav.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Playlist</h1>
+        {% for song in playlist %}
+            <h2 class="category-header">{{ song.song_name }}</h2>
+            <h4 class="category-header">{{ song.artist_name }}</h1>
+        {% endfor %}
+{% endblock %}

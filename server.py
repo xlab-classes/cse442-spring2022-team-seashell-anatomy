@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template
 from db import populate, songs
-<<<<<<< HEAD
 from views.api import res_get_playlist, res_add_rating
-=======
->>>>>>> 4b5683697ee854c8c7077a994d55d0dbd6b588b4
 
 app = Flask(__name__)
 
@@ -42,16 +39,11 @@ def playlist_gen():
 
 @app.route('/generate')
 def generate():
-<<<<<<< HEAD
+    for key in request.args.keys():
+        print(key, request.args[key])
     playlist = res_get_playlist(request.args.to_dict(flat=False))
-    return render_template('generate.html', playlist = playlist)
+    return render_template('playlist_ret.html', playlist=playlist)
 
 @app.route('/rating')
 def rating():
     return render_template('rating.html')
-=======
-    for key in request.args.keys():
-        print(key, request.args[key])
-    playlist = songs.get_song_by_id('0fv2KH6hac06J86hBUTcSf')
-    return render_template('playlist_ret.html', playlist=playlist)
->>>>>>> 4b5683697ee854c8c7077a994d55d0dbd6b588b4

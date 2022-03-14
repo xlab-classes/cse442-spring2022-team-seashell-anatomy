@@ -39,8 +39,10 @@ def playlist_gen():
 
 @app.route('/generate')
 def generate():
+    for key in request.args.keys():
+        print(key, request.args[key])
     playlist = res_get_playlist(request.args.to_dict(flat=False))
-    return render_template('generate.html', playlist = playlist)
+    return render_template('playlist_ret.html', playlist=playlist)
 
 @app.route('/rating')
 def rating():

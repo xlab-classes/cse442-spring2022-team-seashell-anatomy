@@ -1,9 +1,9 @@
 from pip import main
 from reccomendation.algorithm import rec_algo
 
-valid_features = set("genre_list", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instumentalness", "liveness", "valence", "tempo", "duration_ms", "time_signature") #temporary
+valid_features = ["genre_list", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instumentalness", "liveness", "valence", "tempo", "duration_ms", "time_signature"] #temporary
 
-def res_get_playlist(in_dict):
+def res_get_playlist(in_dict: dict):
     if not in_dict: return None
     cleaned = {}
     for feature in in_dict.keys():

@@ -38,7 +38,7 @@ def playlist_gen():
 
 @app.route('/generate')
 def generate():
-    for key in request.args.keys():
-        print(key, request.args[key])
-    playlist = songs.get_song_by_id('0fv2KH6hac06J86hBUTcSf')
+    # args = request.args.keys()
+    playlist = songs.get_songs_by_attr('speechiness', 0.0, 0.5)
+    print(playlist)
     return render_template('playlist_ret.html', playlist=playlist)

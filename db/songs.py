@@ -44,3 +44,11 @@ def get_song_by_artist(artist_name):
       print('This song is not in the database!')
 
    return song_list
+
+
+def get_songs_by_attr(attr, min, max):
+    s = SONG_DATA.select().where((SONG_DATA.c[attr] <= max) & (SONG_DATA.c[attr] >= min))
+    conn = ENGINE.connect()
+    result = conn.execute(s)
+    return result
+

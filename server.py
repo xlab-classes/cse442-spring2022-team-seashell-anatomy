@@ -1,12 +1,20 @@
-from api import res_get_playlist
-from flask import Flask, render_template, request
-
+from flask import Flask, request, render_template
+from db import populate, songs
+from views.api import res_get_playlist, res_add_rating
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def main():
     return render_template('index.html')
+
+
+@app.route('/static/<path>')
+def render_static(path):
+    with open(f'static/{path}') as file:
+        return file
+
 
 @app.route('/about')
 def about():
@@ -19,21 +27,15 @@ def about():
     ]
     return render_template('about.html', members=members)
 
+
 @app.route('/playlist_gen')
 def playlist_gen():
     categories = [
-        {'name': 'catA', 'type': 'checkbox', 'options': ['option1', 'option2']},
-        {'name': 'catB', 'type': 'radio', 'options': ['option1', 'option2']},
-        {'name': 'catC', 'type': 'range', 'options': ['option1', 'option2']},
-        {'name': 'catD', 'type': 'text', 'options': ['option1', 'option2']},
+        {'name': 'catA', 'min': 10, 'max': 12},
+        {'name': 'catB', 'min': 10, 'max': 13}
     ]
     return render_template('playlist_gen.html', categories=categories)
 
-# serves static files (we can have nginx do this in the future if we want)
-@app.route('/static/<path>')
-def render_static(path):
-    with open(f'static/{path}') as file:
-        return file
 
 @app.route('/generate')
 def generate():
@@ -43,4 +45,3 @@ def generate():
 @app.route('/rating')
 def rating():
     return render_template('rating.html')
-

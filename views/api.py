@@ -11,7 +11,8 @@ def res_get_playlist(in_dict):
     if not cleaned:
         return []
     #Get playlist with cleaned dictionary?
-    return [{}]
+    playlist = (cleaned)
+    return playlist
 
 def res_add_rating(rating: int, description: str):
     #Enter rating into a database?

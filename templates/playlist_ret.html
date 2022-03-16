@@ -4,8 +4,24 @@
 
 {% block content %}
     <h1>Playlist</h1>
+    <div class="song_list">
+        <div class="song-row header">
+            <p></p>
+            <p class="title">Name</p>
+            <p>Artist</p>
+            <p>Energy</p>
+            <p>Loudness</p>
+            <p>Danceability</p>
+        </div>
         {% for song in playlist %}
-            <h2 class="category-header">{{ song.song_name }}</h2>
-            <h4 class="category-header">{{ song.artist_name }}</h1>
+        <div class="song-row">
+            <img src="{{ song.cover_url }}">
+            <p class="title">{{ song.song_name }}</p></td>
+            <p class="artist">{{ song.artist_name }}</p>
+            <p class="attr">{{ song.energy }}</p>
+            <p class="attr">{{ song.loudness }}</p>
+            <p class="attr">{{ song.danceability }}</p>
+        </div>
         {% endfor %}
+    </div>
 {% endblock %}

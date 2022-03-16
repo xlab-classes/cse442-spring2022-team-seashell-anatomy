@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from db import populate, songs
+from db import songs
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def playlist_gen():
 
 @app.route('/generate')
 def generate():
-    # args = request.args.keys()
-    playlist = songs.get_songs_by_attr('speechiness', 0.0, 0.5)
-    print(playlist)
+    args = request.args.keys()
+    playlist = songs.get_songs_by_attrs([('speechiness', 0.0, 0.5), ('energy', 0.0, 1)])
     return render_template('playlist_ret.html', playlist=playlist)
+

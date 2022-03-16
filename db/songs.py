@@ -1,4 +1,6 @@
 from db import SONG_DATA, ENGINE
+import numpy as np
+from functools import reduce
 
 
 def get_song_by_name(song_name):
@@ -46,9 +48,35 @@ def get_song_by_artist(artist_name):
    return song_list
 
 
+# input list of lists, output intersection of lists
+def set_and(lists):
+    ids = reduce(np.intersect1d, tuple([x['id_number'] for x in _] for _ in lists))
+    
+    retval = []
+    added_ids = set()
+    for _list in lists:
+        for song in _list:
+            _id = song['id_number']
+            if _id in ids and _id not in added_ids:
+                retval.append(song)
+                added_ids.add(_id)
+
+    return retval
+
+
+# {'name': attrA, 'min': 3, 'max': 7}
+def get_songs_by_attrs(attrs):
+    song_attrs = []
+    for attr, min, max in attrs:
+        song_attrs.append(get_songs_by_attr(attr, min, max))
+
+    result = set_and(song_attrs)
+    return result
+
+
 def get_songs_by_attr(attr, min, max):
-    s = SONG_DATA.select().where((SONG_DATA.c[attr] <= max) & (SONG_DATA.c[attr] >= min))
+    s = SONG_DATA.select().where(SONG_DATA.c[attr] <= max, SONG_DATA.c[attr] >= min).limit(10)
     conn = ENGINE.connect()
-    result = conn.execute(s)
+    result = [dict(x) for x in conn.execute(s)]
     return result
 

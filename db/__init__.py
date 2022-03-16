@@ -2,7 +2,7 @@ from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
-ENGINE = create_engine('mysql+pymysql://jrnaranj:50309202@oceanus.cse.buffalo.edu/cse442_2022_spring_team_b_db', echo = True)
+ENGINE = create_engine('mysql+pymysql://jrnaranj:50309202@oceanus.cse.buffalo.edu/cse442_2022_spring_team_b_db')
 ENGINE.connect()
 META = MetaData()
 SONG_DATA = Table(

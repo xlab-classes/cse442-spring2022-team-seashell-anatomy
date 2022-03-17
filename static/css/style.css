@@ -23,7 +23,7 @@
 }
 
 .selected {
-    background-color: lightgrey;
+    background-color: grey;
 }
 
 
@@ -217,7 +217,7 @@ form .category .box:hover {
 button {
     padding: 6px;
     line-height: 0;
-    background-color: var(--bg-grey);
+    background-color: lightgrey;
 }
 
 button:hover {

@@ -31,19 +31,24 @@ def about():
 @app.route('/playlist_gen')
 def playlist_gen():
     categories = [
-        {'name': 'catA', 'min': 10, 'max': 12},
-        {'name': 'catB', 'min': 10, 'max': 13}
+        {'name': 'energy', 'min': 0, 'max': 1, 'step': 0.01},
+        {'name': 'danceability', 'min': 0, 'max': 1, 'step': 0.01}
     ]
     return render_template('playlist_gen.html', categories=categories)
 
 
+
+t = 0.1  # threshold
+
 @app.route('/generate')
 def generate():
-    for key in request.args.keys():
-        print(key, request.args[key])
-    playlist = res_get_playlist(request.args.to_dict(flat=False))
+    args = dict(request.args)
+    attrs = [(x, float(args[x])-t, float(args[x])+t) for x in args]
+    playlist = songs.get_songs_by_attrs(attrs)
     return render_template('playlist_ret.html', playlist=playlist)
+
 
 @app.route('/rating')
 def rating():
     return render_template('rating.html')
+

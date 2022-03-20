@@ -7,7 +7,12 @@
     <form action="/generate" method="GET">
         {% for category in categories %}
             <h2 class="category-header">{{ category.name }}</h2>
-            <input type="range" id="{{ option }}" name="{{ category.name }}">
+            <input type="range" id="{{ option }}" 
+                   name="{{ category.name }}" 
+                   min="{{ category.min }}" 
+                   max="{{ category.max }}" 
+                   step={{ category.step }}>
+
             <label for="{{ option }}">{{ option }}</label><br>
         {% endfor %}
 

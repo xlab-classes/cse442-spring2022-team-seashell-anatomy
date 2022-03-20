@@ -6,16 +6,25 @@
     <h1>Playlist Generator</h1>
     <form action="/generate" method="GET">
         {% for category in categories %}
+	<div class="greenborder">
+	<div class="parentform">
+	    <div class="formtext childform">
             <h2 class="category-header">{{ category.name }}</h2>
-            <input type="range" id="{{ option }}" 
+	    </div>
+	    <div class="formbar childform">
+	    <input type="range" id="{{ option }}" 
                    name="{{ category.name }}" 
                    min="{{ category.min }}" 
                    max="{{ category.max }}" 
-                   step={{ category.step }}>
+                   step={{ category.step }}
+		   class="slider">
 
             <label for="{{ option }}">{{ option }}</label><br>
+	    </div>
+	</div>
+	</div>
         {% endfor %}
-
-        <input type="submit" value="Submit">
+	<br><br>
+        <input class="submitbutton" type="submit" value="Submit">
     </form>
 {% endblock %}

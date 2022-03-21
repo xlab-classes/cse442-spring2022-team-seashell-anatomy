@@ -33,6 +33,7 @@ body {
     color: white;
     background-color: var(--bg-black);
     margin: 0;
+    
 }
 
 /* navigation */
@@ -40,9 +41,9 @@ body {
 nav {
     color: var(--text-grey);
     background-color: var(--bg-dark-black);
-    padding: 20px;
+    padding: 20px; 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;  
 }
 
 nav .company {
@@ -55,9 +56,9 @@ nav .company a {
 }
 
 nav a {
-    color: var(--text-grey);
+    color: var(--text-green);
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 20px; 
     text-decoration: none;
 }
 
@@ -72,7 +73,18 @@ nav a:hover {
 }
 
 .title-group h1 {
-    font-size: 3rem;
+    font-size: 5rem;
+}
+
+.title-group h2 {
+    font-size: 2rem;
+    font-style: italic;
+}
+
+.title-group h3 {
+    font-size: 4rem;
+    font-style: italic;
+    color: #33AA44
 }
 
 .content {
@@ -82,7 +94,7 @@ nav a:hover {
 .member_list .member {
     background-color: rgb(51, 51, 51);
     display: inline-block;
-    margin: 20px;
+    margin: 60px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
@@ -121,20 +133,23 @@ nav a:hover {
 
 .big-button {
     color: var(--text-white);
-    background-color: var(--fg-green);
+    background-color: #117722 /*var(--fg-green)*/;
+    border: 8px solid black;
+    border-color: #33AA44;
     text-decoration: none;
     padding: 40px;
-    font-size:4rem;
+    font-size:6rem;
     font-weight: 700;
 }
 
 .big-button:hover {
     background-color: var(--fg-green-hover);
 }
-
+/*
 form .category {
 
 }
+*/
 
 form .category-header {
     color: var(--text-green);

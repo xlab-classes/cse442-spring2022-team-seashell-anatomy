@@ -1,5 +1,5 @@
-import spotify
 from db import SONG_DATA, ENGINE
+from spotify_api import spotify
 
 
 # As of now, populate_database will not account for duplicates. If run multiple times there will be columns with the same song in it.

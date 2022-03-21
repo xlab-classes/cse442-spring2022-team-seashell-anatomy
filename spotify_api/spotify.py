@@ -1,6 +1,6 @@
 import spotipy 
 from spotipy.oauth2 import SpotifyClientCredentials
-import credentials
+from spotify_api import credentials
 import pickle
 
 client_credentials_manager = SpotifyClientCredentials(client_id=credentials.client_id, client_secret=credentials.secret_id)

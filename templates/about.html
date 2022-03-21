@@ -3,10 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="title-group">
+    <h3>Meet The Developers</h3> 
+</div>
 <div class="member_list">
     {% for member in members %}
     <div class="member">
-        <img src="/static/images/{{ member['name'].lower().replace(' ', '_') }}.jpg">
+        <img src="/static/images/{{ member['name'].lower().replace(' ', '_') }}.jpg";> 
         <div class="name">{{ member['name'] }}</div>
         <div class="major">{{ member['major'] }}</div>
     </div>

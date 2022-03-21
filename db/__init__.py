@@ -4,11 +4,14 @@ from sqlalchemy.orm import sessionmaker
 
 
 from dotenv import load_dotenv
-from os import environ as env
-load_dotenv()
+import os
+load_dotenv(override=True)
 
 
-ENGINE = create_engine(f'mysql+pymysql://jrnaranj:50309202@oceanus.cse.buffalo.edu/cse442_2022_spring_team_b_db')
+
+DB_PATH= f'mysql+pymysql://{os.environ.get("USER")}:{os.environ.get("PASSWORD")}@{os.environ.get("SERVER")}'
+print(DB_PATH)
+ENGINE = create_engine(DB_PATH)
 ENGINE.connect()
 META = MetaData()
 SONG_DATA = Table(

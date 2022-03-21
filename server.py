@@ -1,5 +1,5 @@
-from flask import Flask, request, render_template
-from db import populate, songs
+from flask import Flask, request, render_template, session
+from db import ENGINE, SONG_DATA, populate, songs
 from views.api import res_get_playlist, res_add_rating
 
 app = Flask(__name__)
@@ -39,6 +39,18 @@ def about():
 
 @app.route('/playlist_gen')
 def playlist_gen():
+    data = request.json
+    if data:
+        song_list = data['songs']
+        if 'songs_played' in session:
+            previous_list = session.get('songs_played')
+            for item in previous_list:
+                song_list.append(item)
+                
+            session['songs_played'] = song_list
+            
+        else:
+            session['songs_played'] = song_list
     return render_template('playlist_gen.html', categories=categories)
 
 
@@ -57,5 +69,16 @@ def generate():
 
 @app.route('/rating')
 def rating():
+    data = request.json
+    song_id = data["song_id"]
+    existing_rating = songs.get_song_by_id(song_id)["rating"]
+    if existing_rating is None:
+        ins = SONG_DATA.insert().values({"rating":1})
+        conn = ENGINE.connect()
+        conn.execute(ins)
+    else:
+        ins = SONG_DATA.insert().values({"rating":existing_rating + 1})
+        conn = ENGINE.connect()
+        conn.execute(ins)
     return render_template('rating.html')
 

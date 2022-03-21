@@ -170,6 +170,11 @@ form .category .box:hover {
     cursor: pointer;
 } */
 
+#playlist-title {
+    max-width: 250px;
+    border-bottom: 2px solid white;
+    padding: 2px 10px;
+}
 
 .song_list {
     width: 100%;
@@ -183,7 +188,7 @@ form .category .box:hover {
 
 .song_list .song-row {
     display: grid;
-    grid-template-columns: 100px repeat(5, 1fr);
+    grid-template-columns: 100px repeat(7, 1fr);
     gap: 10px;
     align-items: center;
 
@@ -227,6 +232,17 @@ form .category .box:hover {
     font-weight: 300;
     font-size: 1rem;
     display: block;
+}
+
+.song-row .like {
+   width: 25px;
+   height: 25px;
+   color: grey;
+}
+
+.song-row .like:hover {
+    color: white;
+    cursor: pointer;
 }
 
 button {

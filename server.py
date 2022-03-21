@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, session
 from db import ENGINE, SONG_DATA, populate, songs
-from views.api import res_get_playlist, res_add_rating
+# from views.api import res_get_playlist, res_add_rating
 
 app = Flask(__name__)
 

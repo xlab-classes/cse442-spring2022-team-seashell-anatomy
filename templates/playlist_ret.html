@@ -1,0 +1,37 @@
+{% extends "nav.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1 id="playlist-title" contenteditable="true">Playlist</h1>
+
+    <button id="large-button" class="selected" onclick="toLarge();">
+        <i class="bi bi-grid"></i>
+    </button>
+    <button id="small-button" onclick="toSmall(this);">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <div class="song_list">
+        <div class="song-row header">
+            <p></p> <!-- DO NOT DELETE -->
+            <p class="title">Name</p>
+            <p class="title">Artist</p>
+            {% for cat in categories %}
+                <p>{{ cat|title}}</p>
+            {% endfor %}
+        </div>
+        {% for song in playlist %}
+        <div class="song-row">
+            <img src="{{ song.cover_url }}">
+            <p class="title">{{ song.song_name }}</p></td>
+            <p class="artist">{{ song.artist_name }}</p>
+            {% for cat in categories %}
+                <p class="attr">{{ song[cat] }}</p>
+            {% endfor %}
+            <i class="like bi bi-hand-thumbs-up-fill"></i>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="static/js/row_height.js"></script>
+{% endblock %}

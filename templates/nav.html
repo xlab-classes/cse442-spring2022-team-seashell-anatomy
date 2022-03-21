@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/style.css">
+        <title>{% block title %}{% endblock %} - Seashell Anatomy</title>
+    </head>
+    <body>
+        <nav>
+            <div class="company"><a href="/">Seashell Resonance</a> </div>
+            <a href="/about">About</a>
+            <a href="/playlist_gen">Playlist Generator</a>
+        </nav>
+        <div class="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

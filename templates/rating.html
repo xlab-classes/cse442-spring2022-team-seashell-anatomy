@@ -1,0 +1,14 @@
+{% extends "nav.html" %}
+
+{% block title %}Playlist Rating{% endblock %}
+
+{% block content %}
+    <h1>Playlist Rating</h1>
+    <form action="/ratingsubmit" method="get">
+        <h2>Rating</h2>
+        <input type="range" name="rating" value="5" min="0" max="10">
+        <h2>Description</h2>
+        <input type="text" name="description" value="Insert description here...">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

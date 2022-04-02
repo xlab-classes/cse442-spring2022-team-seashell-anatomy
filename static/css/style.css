@@ -249,17 +249,6 @@ form .category .box:hover {
     cursor: pointer;
 }
 
-.artist_overlay {
-    position: fixed;
-    display: none;
-    height: 50%;
-    width: 50%;
-    background-color: var(--bg-black);
-    opacity: 90%;
-    border: solid var(--text-green);
-    border-radius: 8px;
-}
-
 button {
     padding: 6px;
     line-height: 0;

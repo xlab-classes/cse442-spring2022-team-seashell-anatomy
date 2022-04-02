@@ -1,0 +1,53 @@
+:root {
+    --text-white: white;
+    --text-grey: rgb(220, 220, 220);
+    --text-white-hover: rgb(201, 201, 201);
+    --text-black: rgb(50, 50, 50);
+    --text-green: rgb(122, 231, 48);
+    --text-green-hover: rgb(71, 204, 19);
+
+    --fg-black: rgb(50, 50, 50);
+    --fg-green: rgb(71, 204, 19);
+    --fg-green-hover: rgb(66, 194, 16);
+
+    --bg-black: rgb(20, 20, 20);
+    --bg-grey: rgb(150, 150, 150);
+    --bg-dark-black: rgb(36, 36, 36);
+    --bg-green: rgb(122, 231, 48);
+    --bg-green-hover: rgb(71, 204, 19);
+    --song-height: 100px;
+}
+
+.member_list .member {
+    background-color: rgb(51, 51, 51);
+    display: inline-block;
+    margin: 60px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100px;
+}
+.member .name {
+    color: var(--text-green);
+    font-weight: 300;
+    margin: 10px 0;
+    font-size: 1.25rem;
+    text-align: center;
+    display: block;
+}
+
+.member .major {
+    color: var(--text-white);
+    font-weight: 300;
+    margin: 10px 0;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+}
+

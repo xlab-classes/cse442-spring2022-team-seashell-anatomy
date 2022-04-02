@@ -1,0 +1,88 @@
+:root {
+    --text-white: white;
+    --text-grey: rgb(220, 220, 220);
+    --text-white-hover: rgb(201, 201, 201);
+    --text-black: rgb(50, 50, 50);
+    --text-green: rgb(122, 231, 48);
+    --text-green-hover: rgb(71, 204, 19);
+
+    --fg-black: rgb(50, 50, 50);
+    --fg-green: rgb(71, 204, 19);
+    --fg-green-hover: rgb(66, 194, 16);
+
+    --bg-black: rgb(20, 20, 20);
+    --bg-grey: rgb(150, 150, 150);
+    --bg-dark-black: rgb(36, 36, 36);
+    --bg-green: rgb(122, 231, 48);
+    --bg-green-hover: rgb(71, 204, 19);
+    --song-height: 100px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  background: var(--fg-black);
+  outline: none;
+  border: 2px solid var(--text-green);
+  border-radius: 8px;
+}
+
+
+/* for chrome/safari */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 60px;
+  background: var(--fg-black);
+  cursor: pointer;
+  border: 5px solid var(--text-green);
+  border-radius: 4px;
+}
+
+/* for firefox */
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 60px;
+  background: var(--fg-black);
+  cursor: pointer;
+  border: 5px solid var(--text-green);
+  border-radius: 4px;
+}
+
+.parentform {
+  border: 10px solid var(--fg-black);
+  outline: 2px solid var(--text-green);
+  position: relative;
+  width: 50%;
+  padding: 1rem 1rem;
+}
+.childform {
+  display: inline-block;
+  padding: 10px 10px;
+  vertical-align: middle;
+  width: 40%;
+  top: 50%;
+  margin: 0;
+}
+.formtext {
+  -ms-transform: translateY(0%);
+  transform: translateY(0%);
+}
+
+.formbar {
+  -ms-transform: translateY(20%);
+  transform: translateY(20%);
+}
+
+.submitbutton {
+  background-color: var(--fg-black);
+  border: 2px solid var(--text-green);
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+

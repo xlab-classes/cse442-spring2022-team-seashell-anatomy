@@ -1,5 +1,7 @@
 {% extends "nav.html" %}
 
+{% block style %}<link rel="stylesheet" href="static/css/playlist_gen.css">{% endblock %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -22,10 +24,10 @@
             {% endfor %}
         </div>
         {% for song in playlist %}
-        <div class="song-row">
+        <div class="song-row song" song_id="{{ song.song_id }}">
             <img src="{{ song.cover_url }}">
             <p class="title">{{ song.song_name }}</p></td>
-            <p class="artist">{{ song.artist_name }}</p>
+        <p class="artist"><a href="/artist/{{ song.artist_name }}">{{ song.artist_name }}</a></p>
             {% for cat in categories %}
                 <p class="attr">{{ song[cat] }}</p>
             {% endfor %}
@@ -34,4 +36,5 @@
         {% endfor %}
     </div>
     <script src="static/js/row_height.js"></script>
+    <script src="static/js/toggle_upvote.js"></script>
 {% endblock %}

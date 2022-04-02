@@ -80,3 +80,6 @@ def get_songs_by_attr(attr, min, max):
     result = [dict(x) for x in conn.execute(s)]
     return result
 
+
+def toggle_upvote(song_id):
+   pass 

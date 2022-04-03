@@ -1,5 +1,7 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, jsonify, request, render_template
 from db import songs
+import json
+import pickle
 from views import categories
 
 
@@ -43,4 +45,14 @@ def generate():
         playlist=playlist, 
         categories=[x['name'] for x in categories]
     )
+
+@rec_app.route('/artist', methods=['GET'])
+def artist_songs():
+    artist_name = request.args.get('a', type=str)
+    song_list = songs.get_song_by_artist(artist_name)
+    for song in song_list:
+        song['genre_list'] = pickle.loads(song['genre_list'])
+    return jsonify(song_list), 200
+
+
 

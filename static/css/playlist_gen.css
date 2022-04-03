@@ -100,7 +100,7 @@
 
 .artist_overlay {
     position: fixed;
-    display: block;
+    display: none;
     height: 80%;
     width: 500px;
     margin: auto;
@@ -116,7 +116,7 @@
 
 .background_block {
     position: fixed;
-    display: block;
+    display: none;
     height: 100%;
     width: 100%;
     margin: auto;
@@ -131,16 +131,16 @@
 .artist_header {
     border: solid var(--text-green);
     border-radius: 8px;
-    max-height: 50%;
+    height: 150px;
     text-align: center;
-    display: flex;
-    flex-flow: row wrap;
+    display: block;
 }
 
 .artist_header img {
     width: 100px;
     height: 100px;
     padding: 5%;
+    float: left;
     object-fit: cover;
     border-radius: 100px;
 }
@@ -164,6 +164,37 @@
     padding-left: 2.5%;
     text-align: left;
     display: block;
+}
+
+.artist_songs {
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+    height: calc(99% - 150px);
+    overflow-x: hidden;
+    align-items: center;
+}
+
+.artist_song {
+    display: flex;
+    flex-flow: row;
+    grid-template-columns: 100px repeat(7, 1fr);
+    gap: 10px;
+    align-items: center;
+
+    width: 95%;
+    height: var(--song-height);
+    margin-bottom: 20px;
+    margin: auto;
+
+    border: solid var(--text-green);
+    border-radius: 4px;
+}
+
+.artist_song img {
+    max-width: var(--song-height);
+    max-height: var(--song-height);
+    object-fit: cover;
 }
 
 .overlay_container {

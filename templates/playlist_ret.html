@@ -27,7 +27,7 @@
         <div class="song-row song" song_id="{{ song.song_id }}">
             <img src="{{ song.cover_url }}">
             <p class="title">{{ song.song_name }}</p></td>
-        <a class="artist" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
+        <a class="artist" id="{{ song.artist_name }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
             {% for cat in categories %}
                 <p class="attr">{{ song[cat] }}</p>
             {% endfor %}
@@ -36,14 +36,12 @@
         {% endfor %}
     </div>
     <div class="overlay_container">
-        <div class="background_block" onclick="hideArtistPage(this)"></div>
-        <div class="artist_overlay">
+        <div class="background_block" id="background_block" onclick="hideArtistPage()"></div>
+        <div class="artist_overlay" id="artist_overlay">
             <div class="artist_header">
-                <img src="static/images/kazi_shadman.jpg">
-                <div>
-                    <div class="name">INSERT ARTIST NAME HERE</div>
-                    <a class="link" href="https://www.spotify.com">Spotify Link</a>
-                </div>
+                <img id="artist_image" src="static/images/kazi_shadman.jpg">
+                <div class="name" id="name">INSERT ARTIST NAME HERE</div>
+                <a class="link" id="link">Spotify Link</a>
             </div>
             <div class="artist_songs"></div>
         </div>

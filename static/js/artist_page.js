@@ -23,6 +23,7 @@ function getArtistPage(song_artist) {
                 song = parsed[i]
                 song_list.innerHTML += "<div class=\"artist_song\"><img src=" + song['cover_url'] + "><p class=\"title\">" + song["song_name"] + "</p></td></div>"
             }
+            img_elem.setAttribute("src", parsed[0]['cover_url']);
         }
     };
 

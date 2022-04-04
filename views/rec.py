@@ -40,7 +40,7 @@ def generate():
 
     playlist = songs.get_songs_by_attrs(attrs)
 
-    for i in playlist:
+    for e in playlist:
         json_format = {"id_number": e["id_number"], "song_name": e["song_name"], "song_id":e["song_id"]}
         share_list.append(json_format)
 

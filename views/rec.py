@@ -38,6 +38,7 @@ def generate():
         attrs.append(attr_input)
 
     playlist = songs.get_songs_by_attrs(attrs)
+    print(playlist)
     return render_template(
         'playlist_ret.html', 
         playlist=playlist, 

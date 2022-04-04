@@ -1,10 +1,10 @@
 # info for the team
 members = [
-    {'name':'Emil Kovacev', 'major': 'Computer Science'},
-    {'name': 'Kazi Shadman', 'major': 'Computer Science'},
-    {'name': 'Steven Carter', 'major': 'Computer Science'},
-    {'name': 'Jeffrey Naranjo', 'major': 'Computer Engineering'}, 
-    {'name': 'Adam Russell', 'major': 'Computer Science'}
+    {'name':'Emil Kovacev', 'year': 'Junior:', 'major': 'Computer Science'},
+    {'name': 'Kazi Shadman', 'year': 'Senior:', 'major': 'Computer Science'},
+    {'name': 'Steven Carter', 'year': 'Junior:', 'major': 'Computer Science'},
+    {'name': 'Jeffrey Naranjo', 'year': 'Junior:', 'major': 'Computer Engineering'}, 
+    {'name': 'Adam Russell', 'year': 'Junior:', 'major': 'Computer Science'}
 ]
 
 # categories in the gen_algo form

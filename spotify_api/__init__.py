@@ -14,4 +14,3 @@ client_credentials_manager = SpotifyClientCredentials(
 )
 
 search_data = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-

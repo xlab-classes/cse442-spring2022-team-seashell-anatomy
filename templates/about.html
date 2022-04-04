@@ -12,7 +12,9 @@
     {% for member in members %}
     <div class="member">
         <img src="/static/images/{{ member['name'].lower().replace(' ', '_') }}.jpg";> 
+        <br> 
         <div class="name">{{ member['name'] }}</div>
+        <div class="year">{{ member['year'] }}</div>
         <div class="major">{{ member['major'] }}</div>
     </div>
     {% endfor %}

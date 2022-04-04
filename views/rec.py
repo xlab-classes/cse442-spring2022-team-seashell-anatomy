@@ -5,6 +5,7 @@ from views import categories
 
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
 
+share_list = []
 
 @rec_app.route('/playlist_gen')
 def playlist_gen():
@@ -38,10 +39,20 @@ def generate():
         attrs.append(attr_input)
 
     playlist = songs.get_songs_by_attrs(attrs)
-    print(playlist)
+
+    for e in playlist:
+        json_format = {"id_number": e["id_number"], "song_name": e["song_name"], "song_id":e["song_id"]}
+        share_list.append(json_format)
+
     return render_template(
         'playlist_ret.html', 
         playlist=playlist, 
         categories=[x['name'] for x in categories]
     )
 
+@rec_app.route('/share')
+def share():
+    if len(share_list) != 0:
+        return str(share_list)
+    else:
+        return "No songs were shared yet".encode()

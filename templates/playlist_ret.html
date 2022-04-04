@@ -27,7 +27,7 @@
         <div class="song-row song" song_id="{{ song.song_id }}">
             <img src="{{ song.cover_url }}">
             <p class="title">{{ song.song_name }}</p></td>
-        <p class="artist"><a href="/artist/{{ song.artist_name }}">{{ song.artist_name }}</a></p>
+        <p class="artist">{{ song.artist_name }}</p>
             {% for cat in categories %}
                 <p class="attr">{{ song[cat] }}</p>
             {% endfor %}

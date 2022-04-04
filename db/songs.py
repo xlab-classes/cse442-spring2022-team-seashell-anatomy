@@ -30,7 +30,7 @@ def get_song_by_id(id):
    if(len(song_list) == 0): #If list is empty, the database does not contain this song.
       print('This song is not in the database!')
 
-   return song_list
+   return song_list[0]
 
 
 def get_song_by_artist(artist_name):

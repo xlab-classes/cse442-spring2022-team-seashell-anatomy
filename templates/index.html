@@ -1,11 +1,16 @@
 {% extends "nav.html" %}
 
+{% block style %}<link rel="stylesheet" href="static/css/front_page.css">{% endblock %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
     <div class="title-group">
-        <h1>Resonance Playlist Generator</h1> 
-        <p>(RPG for short)</p>
+        <h1>RESONANCE</h1> 
+        <h2>a non-proprietary music <br>
+        reccomendation algorithm</h2>
     </div>
-    <div class="button-group"><a href="/playlist_gen" class="big-button">use now</a></div>
+    <div class="button-group"><a href="/playlist_gen" class="big-button">Use Now</a></div>
 {% endblock %}
+
+

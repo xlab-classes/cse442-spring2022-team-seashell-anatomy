@@ -28,41 +28,11 @@
 
 
 body {
-    font-family: Helvetica, sans-serif;
+    font-family: 'ABeeZee', sans-serif;
     font-weight: 500;
     color: white;
     background-color: var(--bg-black);
     margin: 0;
-}
-
-/* navigation */
-
-nav {
-    color: var(--text-grey);
-    background-color: var(--bg-dark-black);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-nav .company {
-    display: inline-block;
-    margin-right: auto;
-}
-
-nav .company a {
-    color:white;
-}
-
-nav a {
-    color: var(--text-grey);
-    display: inline-block;
-    margin: 0 20px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: var(--text-white-hover);
 }
 
 /* content */
@@ -72,154 +42,67 @@ nav a:hover {
 }
 
 .title-group h1 {
-    font-size: 3rem;
+    font-size: 5rem;
+    font-weight: 400;
+}
+
+.title-group h2 {
+    font-size: 2rem;
+    color: #999999;
+    font-style: italic;
+    font-weight: 300;
+
+}
+
+.title-group h3 {
+    font-size: 4rem;
+    font-style: italic;
+    color: #33AA44;
+    font-weight: 300;
 }
 
 .content {
     margin: 40px;
 }
 
-.member_list .member {
-    background-color: rgb(51, 51, 51);
-    display: inline-block;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.4);
-}
-
-.member img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 100px;
-}
-.member .name {
-    color: var(--text-green);
-    font-weight: 300;
-    margin: 10px 0;
-    font-size: 1.25rem;
-    text-align: center;
-    display: block;
-}
-
-.member .major {
-    color: var(--text-white);
-    font-weight: 300;
-    margin: 10px 0;
-    font-size: 1rem;
-    text-align: center;
-    display: block;
-}
-
-.button-group {
-    margin-top: 100px;
+nav {
+    color: var(--text-grey);
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.big-button {
-    color: var(--text-white);
-    background-color: var(--fg-green);
+nav .company {
+    display: inline-block;
+    border-bottom: 1px;
+    font-size: large;
+    font-weight: bold;
+    padding: 20px;
+    width: 25%;
+    text-align: center;
+}
+
+nav .company a {
+    color:white;
+}
+
+nav a {
+    color: #33AA44;
+    font-size: large;
+    display: inline-block;
     text-decoration: none;
-    padding: 40px;
-    font-size:4rem;
-    font-weight: 700;
+    border-left: 2px solid white;
+    border-bottom: 1px;
+    padding: 20px;
+    width: 25%;
+    text-align: center;
 }
 
-.big-button:hover {
-    background-color: var(--fg-green-hover);
+
+
+nav a:hover {
+    color: var(--text-white-hover);
 }
 
-form .category {
-
-}
-
-form .category-header {
-    color: var(--text-green);
-    font-size: 2rem;
-    margin: 0;
-}
-
-/* form .category .box {
-    padding: 10px;
-    width: 200px;
-    height: 200px;
-    border: 2px solid var(--bg-dark-black);
-    margin: -2px -2px 0 0;
-}
-
-form .category .box:hover {
-    background-color: var(--bg-dark-black);
-    cursor: pointer;
-} */
-
-
-.song_list {
-    width: 100%;
-}
-
-.song_list .header {
-    margin: 40px 0 0 0 !important;
-    background-color: transparent !important;
-    height: 40px !important;
-}
-
-.song_list .song-row {
-    display: grid;
-    grid-template-columns: 100px repeat(5, 1fr);
-    gap: 10px;
-    align-items: center;
-
-    width: 100%;
-    height: var(--song-height);
-    background-color: rgb(51, 51, 51);
-    margin-bottom: 20px;
-}
-
-.song-row p {    
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.song-row  img {
-    max-width: var(--song-height);
-    max-height: var(--song-height);
-    object-fit: cover;
-}
-
-.song-row .title {
-    margin-left: 10px;
-    color: var(--text-white);
-    font-size: 1rem;
-}
-
-.song-row-header .title {
-    margin-left: 10px;
-}
-
-.song-row .artist {
-    color: var(--text-white);
-    font-weight: 300;
-    font-size: 1rem;
-    display: block;
-}
-
-.song-row .attr {
-    color: var(--text-white);
-    font-weight: 300;
-    font-size: 1rem;
-    display: block;
-}
-
-button {
-    padding: 6px;
-    line-height: 0;
-    background-color: lightgrey;
-}
-
-button:hover {
-    cursor: pointer;
-}

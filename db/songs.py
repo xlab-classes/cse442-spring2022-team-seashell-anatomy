@@ -30,7 +30,7 @@ def get_song_by_id(id):
    if(len(song_list) == 0): #If list is empty, the database does not contain this song.
       print('This song is not in the database!')
 
-   return song_list
+   return song_list[0]
 
 
 def get_song_by_artist(artist_name):
@@ -80,3 +80,6 @@ def get_songs_by_attr(attr, min, max):
     result = [dict(x) for x in conn.execute(s)]
     return result
 
+
+def toggle_upvote(song_id):
+   pass 

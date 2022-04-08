@@ -1,5 +1,6 @@
 **/__pycache__/
 **/.
 **/credentials.py
+**/*.pyc
 !.gitignore
 **/venv

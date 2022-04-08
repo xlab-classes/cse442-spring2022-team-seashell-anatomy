@@ -2,3 +2,4 @@
 **/.
 **/credentials.py
 !.gitignore
+**/venv

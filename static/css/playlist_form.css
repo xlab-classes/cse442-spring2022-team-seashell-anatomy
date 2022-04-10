@@ -86,3 +86,7 @@
   cursor: pointer;
 }
 
+.error {
+  color: rgb(231, 48, 48)
+}
+

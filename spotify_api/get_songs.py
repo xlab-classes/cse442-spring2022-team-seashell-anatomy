@@ -25,7 +25,7 @@ def parse_track(track):
 
     return {
         'song_name': track['name'],
-        'artist_names': track['artists'][0],
+        'artist_name': track['artists'][0]['name'],
         'song_id': track['id'],
         'song_features': features.json(),
         'cover_art': track['album']['images'][0]['url'],
@@ -71,4 +71,4 @@ def get_songs(n):
 
 
 if __name__ == '__main__':
-    get_songs(10)
+    print(get_songs(10))

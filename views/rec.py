@@ -75,7 +75,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Parts of the following code was borrowed from the Flask documentation
-
+# Allows user to import their song list
 @app.route('/import', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, render_template, Flask, request
-from db import songs
+from db import songs, populate
 import json
 import pickle
 from views import categories
@@ -88,6 +88,10 @@ def upload_file():
             read = open("./save/" + filename, "r")
             v = read.read()
             j = json.loads(v)
+            w = open("./save/" + filename, "w")
+            w.write("")
+            w.close()
+            populate.populate_share(j)
             return v.encode()
     return '''
     <!doctype html>

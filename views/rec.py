@@ -1,8 +1,10 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, Flask, request
 from db import songs
 import json
 import pickle
 from views import categories
+import os
+from werkzeug.utils import secure_filename
 
 
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
@@ -67,4 +69,32 @@ def artist_songs():
         song['genre_list'] = pickle.loads(song['genre_list'])
     return jsonify(song_list), 200
 
+UPLOAD_FOLDER = './save/'
 
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Parts of the following code was borrowed from the Flask documentation
+
+@app.route('/import', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+
+        file = request.files['file']
+
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            read = open("./save/" + filename, "r")
+            v = read.read()
+            j = json.loads(v)
+            return v.encode()
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+    '''

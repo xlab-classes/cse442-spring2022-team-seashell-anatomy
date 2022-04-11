@@ -72,8 +72,10 @@ def get_songs_by_attrs(attrs):
         song_attrs.append(get_songs_by_attr(attr, min, max))
 
     result = set_and(song_attrs)
-    random_result = random.choices(result, k=10)
-    return random_result
+    if len(result) > 10:
+        return random.choices(result, k=10)
+    else:
+        return result
 
 
 def get_songs_by_attr(attr, min, max):

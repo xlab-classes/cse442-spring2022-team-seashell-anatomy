@@ -1,6 +1,8 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request
 from db import ENGINE, SONG_DATA, songs
 from flask import session
+
+from . import categories
 
 
 upvotes_app = Blueprint('upvotes_app', __name__, template_folder='../static')
@@ -20,7 +22,15 @@ def toggle_upvote():
 
     if song['content'] == 'upvote':
         new_rating = prev_rating + 1
-        session['threshold'] = session.get('threshold', 0.2) - 0.05
+        threshold = session.get('threshold', 0.8) - 0.005
+        session['threshold'] = threshold
+        db_song = songs.get_song_by_id(song_id)
+        bias = sum([db_song[cat['name']] - threshold for cat in categories]) * 0.1
+        
+        print(bias, threshold)
+
+
+        session['bias'] = min(max(session.get('bias', 0.0) + bias, 0.3), -0.3)
     elif song['content'] == 'downvote':
         new_rating = prev_rating - 1
     else:

@@ -3,10 +3,10 @@
     --text-grey: rgb(220, 220, 220);
     --text-white-hover: rgb(201, 201, 201);
     --text-black: rgb(50, 50, 50);
-    --text-green: rgb(122, 231, 48);
+    --text-green: rgb(51, 170, 68);
     --text-green-hover: rgb(71, 204, 19);
 
-    --fg-black: rgb(50, 50, 50);
+    --fg-black: rgb(0, 0, 0);
     --fg-green: rgb(71, 204, 19);
     --fg-green-hover: rgb(66, 194, 16);
 
@@ -52,37 +52,40 @@
 }
 
 .parentform {
-  border: 10px solid var(--fg-black);
+  border: 0px solid var(--fg-black);
   outline: 2px solid var(--text-green);
   position: relative;
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
   padding: 1rem 1rem;
 }
 .childform {
-  display: inline-block;
-  padding: 10px 10px;
+  color: var(--text-green);
+  padding: 4px;
   vertical-align: middle;
-  width: 40%;
-  top: 50%;
   margin: 0;
 }
+
 .formtext {
-  -ms-transform: translateY(0%);
-  transform: translateY(0%);
+  min-width: 150px;
+  text-align: center;
 }
 
 .formbar {
-  -ms-transform: translateY(20%);
-  transform: translateY(20%);
+  width: 100%;
+  max-width: 1200px;
 }
 
 .submitbutton {
   background-color: var(--fg-black);
   border: 2px solid var(--text-green);
-  color: #fff;
+  color: var(--text-green);
   padding: 15px 30px;
-  text-decoration: none;
   margin: 4px 2px;
+  font-size: 30px;
   cursor: pointer;
+  font-family: inherit;
 }
 

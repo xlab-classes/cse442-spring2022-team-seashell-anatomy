@@ -5,7 +5,6 @@
 {% block style %}<link rel="stylesheet" href="static/css/playlist_form.css">{% endblock %}
 
 {% block content %}
-    <h1>Playlist Generator</h1>
     <form action="/generate" method="GET">
         {% for category in categories %}
 	<div class="greenborder">
@@ -21,7 +20,7 @@
                    step="{{ category.step }}"
 		   class="slider">
 
-            <label for="{{ option }}">{{ option }}</label><br>
+            <label for="{{ option }}">{{ option }}</label>
 	    </div>
 	</div>
 	</div>

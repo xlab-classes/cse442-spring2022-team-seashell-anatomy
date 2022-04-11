@@ -3,7 +3,7 @@
     --text-grey: rgb(220, 220, 220);
     --text-white-hover: rgb(201, 201, 201);
     --text-black: rgb(50, 50, 50);
-    --text-green: rgb(122, 231, 48);
+    --text-green: rgb(51, 170, 68);
     --text-green-hover: rgb(71, 204, 19);
 
     --fg-black: rgb(50, 50, 50);
@@ -29,20 +29,19 @@
 }
 
 .song_list .header {
-    margin: 40px 0 0 0 !important;
     background-color: transparent !important;
-    height: 40px !important;
+    height: 20px !important;
 }
 
 .song_list .song-row {
     display: grid;
-    grid-template-columns: 100px repeat(7, 1fr);
-    gap: 10px;
+    grid-template-columns: 100px repeat(4, 1fr);
+    margin-top: 20px!important;
+    gap: 45px;
     align-items: center;
-
     width: 100%;
     height: var(--song-height);
-    background-color: rgb(51, 51, 51);
+    background-color: var(--bg-black);
     margin-bottom: 20px;
 }
 
@@ -56,23 +55,31 @@
     max-width: var(--song-height);
     max-height: var(--song-height);
     object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .song-row .title {
-    margin-left: 10px;
-    color: var(--text-white);
-    font-size: 1rem;
+    color: var(--text-green);
+    font-family: inherit;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .song-row-header .title {
-    margin-left: 10px;
+}
+
+.song {
+    border: 2px solid var(--text-green);
 }
 
 .song-row .artist {
-    color: var(--text-white);
+    color: var(--text-green);
+    font-family: inherit;
     font-weight: 300;
-    font-size: 1rem;
-    display: block;
+    text-align: center;
+    font-size: 1.3rem;
 }
 
 .song-row .artist:hover {
@@ -84,13 +91,15 @@
     color: var(--text-white);
     font-weight: 300;
     font-size: 1rem;
-    display: block;
 }
 
 .song-row .like {
    width: 25px;
    height: 25px;
    color: grey;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .song-row .like:hover {
@@ -201,4 +210,18 @@
     width: 100%;
     height: 100%;
     text-align: center;
+}
+
+
+.submitbutton {
+  background-color: var(--bg-black);
+  border: 2px solid var(--text-green);
+  color: var(--text-green);
+  padding: 15px 30px;
+  margin: 4px 2px;
+  font-size: 30px;
+  cursor: pointer;
+  font-family: inherit;
+  vertical-align: top;
+  display: inline-block;
 }

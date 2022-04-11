@@ -5,32 +5,18 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1 id="playlist-title" contenteditable="true">Playlist</h1>
-
-    <button id="large-button" class="selected" onclick="toLarge();">
-        <i class="bi bi-grid"></i>
-    </button>
-    <button id="small-button" onclick="toSmall(this);">
-        <i class="bi bi-list"></i>
-    </button>
-
     <div class="song_list">
         <div class="song-row header">
-            <p></p> <!-- DO NOT DELETE -->
-            <p class="title">Name</p>
-            <p class="title">Artist</p>
-            {% for cat in categories %}
-                <p>{{ cat|title}}</p>
-            {% endfor %}
+	    <p class="title"></p>
+            <p class="title">Song Name</p>
+            <p class="title">Artist Name</p>
+	    <p class="title">Upvote</p>
         </div>
         {% for song in playlist %}
         <div class="song-row song" song_id="{{ song.song_id }}">
             <img src="{{ song.cover_url }}">
             <p class="title">{{ song.song_name }}</p></td>
             <a class="artist" id="{{ song.artist_name }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
-            {% for cat in categories %}
-                <p class="attr">{{ song[cat] }}</p>
-            {% endfor %}
             <i class="like bi bi-hand-thumbs-up-fill"></i>
         </div>
         {% endfor %}
@@ -45,6 +31,12 @@
             </div>
             <div class="artist_songs"></div>
         </div>
+    </div>
+
+    <div>
+	<input class="submitbutton" type="submit" value="Save Ratings">
+        <input class="submitbutton" type="submit" value="Export to Spotify">
+        <input class="submitbutton" type="submit" value="Share">
     </div>
     <script src="static/js/row_height.js"></script>
     <script src="static/js/toggle_upvote.js"></script>

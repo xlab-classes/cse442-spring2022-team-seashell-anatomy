@@ -3,8 +3,9 @@ from db import songs
 import json
 import pickle
 from views import categories
-
-
+from spotify_api import playlists
+import random
+import string
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
 
 share_list = []
@@ -46,11 +47,23 @@ def generate():
         json_format = {"id_number": e["id_number"], "song_name": e["song_name"], "song_id":e["song_id"]}
         share_list.append(json_format)
 
+    songlist = []
+    for song in playlist:
+        songlist.append(song["id"])
+    letters = string.ascii_letters
+    name = ''.join(random.choice(letters) for i in range(10))
+    link, pid = playlists.create_playlist(name, name)
+    print(link)
+    playlists.add_songs_to_playlist(pid, songlist)
+
     return render_template(
         'playlist_ret.html', 
-        playlist=playlist, 
+        playlist=playlist,
+        splink=link,
         categories=[x['name'] for x in categories]
     )
+
+
 
 @rec_app.route('/share')
 def share():

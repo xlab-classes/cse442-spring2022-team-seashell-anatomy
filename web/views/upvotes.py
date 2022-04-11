@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template
 from db import ENGINE, SONG_DATA, songs
+from flask import session
 
 
 upvotes_app = Blueprint('upvotes_app', __name__, template_folder='../static')
@@ -8,7 +9,7 @@ upvotes_app = Blueprint('upvotes_app', __name__, template_folder='../static')
 @upvotes_app.route('/toggle_upvote', methods=['POST'])
 def toggle_upvote():
     song = request.get_json()
-
+    
     if not song:
         return ''
 
@@ -19,9 +20,11 @@ def toggle_upvote():
 
     if song['content'] == 'upvote':
         new_rating = prev_rating + 1
-
+        session['threshold'] = session.get('threshold', 0.2) - 0.05
     elif song['content'] == 'downvote':
         new_rating = prev_rating - 1
+    else:
+        new_rating = 0
 
     ins = SONG_DATA.insert().values({"rating": max(0, new_rating)})
     conn = ENGINE.connect()

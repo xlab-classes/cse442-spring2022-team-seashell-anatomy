@@ -1,12 +1,11 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, session
 from db import songs
-import json
 import pickle
 from views import categories
 
 
+t = 0.3  # argument threshold
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
-
 share_list = []
 
 @rec_app.route('/playlist_gen')
@@ -29,7 +28,9 @@ def playlist_gen():
 
 @rec_app.route('/generate')
 def generate():
-    t = 0.3  # argument threshold
+
+    t = max(session.get('threshold', 0.3), 0.1)
+    print(t)
 
     args = dict(request.args)
     attrs = []

@@ -19,6 +19,7 @@ fi
 echo 'running tests...'
 
 python -m unittest discover -v
+echo "hello world"
 RETVAL=$?
 
 if [ $RETVAL -ne 0 ]

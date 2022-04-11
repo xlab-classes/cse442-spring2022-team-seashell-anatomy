@@ -1,6 +1,7 @@
 from db import SONG_DATA, ENGINE
 import numpy as np
 from functools import reduce
+import random
 
 
 def get_song_by_name(song_name):
@@ -71,15 +72,12 @@ def get_songs_by_attrs(attrs):
         song_attrs.append(get_songs_by_attr(attr, min, max))
 
     result = set_and(song_attrs)
-    return result
+    random_result = random.choices(result, k=10)
+    return random_result
 
 
 def get_songs_by_attr(attr, min, max):
-    s = SONG_DATA.select().where(SONG_DATA.c[attr] <= max, SONG_DATA.c[attr] >= min).limit(10)
+    s = SONG_DATA.select().where(SONG_DATA.c[attr] <= max, SONG_DATA.c[attr] >= min)
     conn = ENGINE.connect()
     result = [dict(x) for x in conn.execute(s)]
     return result
-
-
-def toggle_upvote(song_id):
-   pass 

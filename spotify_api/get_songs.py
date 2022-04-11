@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv, find_dotenv
 import os
+import sys
 
 from request_token import regenerate_bearer_token
 
@@ -13,7 +14,6 @@ headers = {
     'Content-Type': 'application/json',
     'Authorization': os.environ.get('BEARER_TOKEN')
 }
-
 
 def parse_track(track):
     features_url = f'https://api.spotify.com/v1/audio-features/{track["id"]}'
@@ -57,14 +57,13 @@ def get_songs_by_year(year, limit=None):
         tracks = json_response['tracks']
         next = tracks['next']
         for track in tracks['items']:
-            if len(items) == limit:
+            if len(items) >= limit:
                 return items
             try:
                 parsed = parse_track(track)
                 items.append(parsed)
             except ValueError:
                 print(f'ERROR {track["name"]}')
-        items += [parse_track(_) for _ in tracks['items']]
         response = requests.get(next, headers=headers)
 
     return items
@@ -86,4 +85,5 @@ def get_songs(n):
 
 
 if __name__ == '__main__':
-    get_songs(5)
+    
+    get_songs(int(sys.argv[1]))

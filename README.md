@@ -12,10 +12,9 @@
 
 4. Initialize the `.env` files
     1. `touch spotify_api/.env`
-    2. `touch db/.env`
-    3. copy spotify credentials into `spotify_api/.env`[follow the instructions
-       in env.md]
-    4. copy db credentials into `db/.env [follow the instructions in db/env.md]
+    2. `touch web/.env`
+    3. copy spotify credentials into `spotify_api/.env`
+    4. copy db credentials into `db/.env`
 
 . Run the server
     1. `chmod +x ./run_server.sh`

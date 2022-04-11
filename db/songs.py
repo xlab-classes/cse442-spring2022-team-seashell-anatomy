@@ -1,7 +1,7 @@
-from db import SONG_DATA, ENGINE
 import numpy as np
 from functools import reduce
-
+from db import SONG_DATA, ENGINE,shared_playlists
+#from __init__ import SONG_DATA, ENGINE
 
 def get_song_by_name(song_name):
    s = SONG_DATA.select().where(SONG_DATA.c.song_name == song_name) #SELECT * FROM SONG_DATA WHERE 'song_name' = song_name
@@ -29,8 +29,35 @@ def get_song_by_id(id):
 
    if(len(song_list) == 0): #If list is empty, the database does not contain this song.
       print('This song is not in the database!')
+      return -1
 
    return song_list[0]
+
+def insert_song(id):
+      ins = SONG_DATA.insert().values(uri = id)
+      conn = ENGINE.connect()
+      conn.execute(ins)
+
+
+def get_shared():
+   s= shared_playlists.select()
+   conn = ENGINE.connect()
+   result = conn.execute(s)
+   song_list = []
+
+   for rows in result: 
+      song_list.append(dict(rows))
+   
+   return song_list
+
+def get_playlist_with_id(share_list):
+
+   playlist = []
+
+   for i in share_list:
+      playlist.append(get_song_by_id(i['song_id']))
+   
+   return playlist
 
 
 def get_song_by_artist(artist_name):

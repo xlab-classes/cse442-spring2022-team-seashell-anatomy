@@ -1,20 +1,39 @@
-from flask import Blueprint, jsonify, request, render_template, Flask, request
+from flask import Blueprint, jsonify, request, render_template, Flask, request, redirect
 from db import songs, populate
-import json
 import pickle
 from views import categories
 import os
 from werkzeug.utils import secure_filename
 
+share_list = []
 
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
-
-share_list = []
 
 @rec_app.route('/playlist_gen')
 def playlist_gen():
     return render_template('playlist_gen.html', categories=categories)
 
+@rec_app.route('/requestform')
+def request_form():
+    return render_template('request_song.html', error='')
+
+@rec_app.route('/request')
+def request_song():
+    URL = request.query_string
+    URLsplit = URL.split(b'%2F')
+    if not len(URLsplit) >= 3 or not URLsplit[2] == b"open.spotify.com":
+        return render_template('request_song.html', error='INVALID URL: Not from Spotify')
+    if not len(URLsplit) >= 4 or not URLsplit[3] == b'track':
+        return render_template('request_song.html', error='INVALID URL: URL not from a track')
+    URI = URLsplit[-1].split(b'%3F')[0]
+    if not URI or not len(URI) == 22:
+        return render_template('request_song.html', error='INVALID URL: Invalid track ID')
+    print(URI)
+
+    if songs.get_song_by_id(str(URI)) == -1:
+        songs.insert_song(URI)
+    
+    return redirect('/playlist_gen')
 
 # attribute: a parameter for the spotify API
 #   ex: dancability
@@ -45,21 +64,14 @@ def generate():
     playlist = songs.get_songs_by_attrs(attrs)
 
     for e in playlist:
-        json_format = {"id_number": e["id_number"], "song_name": e["song_name"], "song_id":e["song_id"]}
+        json_format = {"id": e["id"], "song_name": e["song_name"], "song_id": e["song_id"]}
         share_list.append(json_format)
-
+    
     return render_template(
         'playlist_ret.html', 
         playlist=playlist, 
         categories=[x['name'] for x in categories]
     )
-
-@rec_app.route('/share')
-def share():
-    if len(share_list) != 0:
-        return str(share_list)
-    else:
-        return "No songs were shared yet".encode()
 
 @rec_app.route('/artist', methods=['GET'])
 def artist_songs():
@@ -69,36 +81,29 @@ def artist_songs():
         song['genre_list'] = pickle.loads(song['genre_list'])
     return jsonify(song_list), 200
 
-UPLOAD_FOLDER = './save/'
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+@rec_app.route('/share')
+def share():
+    global share_list
+    if len(share_list) != 0:
+        share_playlist = songs.get_playlist_with_id(share_list)
+        print(share_playlist)
+        populate.populate_share(share_playlist)
+        share_list = []
+        playlists = songs.get_shared()
+        print(playlists)
+        display = ""
+        for i,p in enumerate(playlists):
+            song_names = []
+            for song in p['playlist']:
+                song_names.append(song['song_name'])
 
-# Parts of the following code was borrowed from the Flask documentation
-# Allows user to import their song list
-@app.route('/import', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-
-        file = request.files['file']
-
-        if file:
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            read = open("./save/" + filename, "r")
-            v = read.read()
-            j = json.loads(v)
-            w = open("./save/" + filename, "w")
-            w.write("")
-            w.close()
-            populate.populate_share(j)
-            return v.encode()
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+            display += ("<h1>" + "Playlist " + str(i) + "</h1>")
+            display += '<br>'
+            display += str(song_names)
+            display += '<br>'
+            display += '<br>'
+            
+        return str(display)
+    else:
+        return "No songs were shared yet".encode()

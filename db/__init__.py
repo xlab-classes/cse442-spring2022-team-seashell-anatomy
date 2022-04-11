@@ -1,11 +1,17 @@
+
+from heapq import merge
 from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
+from spotify_api.get_songs import get_songs
+import pickle
 
 
 from dotenv import load_dotenv
 import os
 load_dotenv(override=True)
+
+#song_dict =  get_songs.get_songs(1000) #Populates a list of dictionaries containing the song data.
 
 
 
@@ -14,6 +20,7 @@ print(DB_PATH)
 ENGINE = create_engine(DB_PATH)
 ENGINE.connect()
 META = MetaData()
+
 SONG_DATA = Table(
    'song_data', META, 
    Column('id_number', Integer, primary_key = True), 
@@ -41,6 +48,12 @@ SONG_DATA = Table(
    Column('duration_ms', Float),
    Column('time_signature', Integer),
    Column('rating', Float)
+)
+
+shared_playlists = Table(
+   'shared_playlists', META, 
+   Column('id_number', Integer, primary_key = True),
+   Column('playlist', PickleType)
 )
 
 META.create_all(ENGINE)

@@ -22,7 +22,7 @@ def toggle_upvote():
 
     if song['content'] == 'upvote':
         new_rating = prev_rating + 1
-        threshold = session.get('threshold', 0.8) - 0.005
+        threshold = session.get('threshold', 0.8) - 0.01
         session['threshold'] = threshold
         db_song = songs.get_song_by_id(song_id)
         bias = sum([db_song[cat['name']] - threshold for cat in categories]) * 0.1

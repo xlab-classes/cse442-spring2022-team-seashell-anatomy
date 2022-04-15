@@ -19,12 +19,12 @@ def request_form():
 @rec_app.route('/request')
 def request_song():
     URL = request.query_string
-    URLsplit = URL.split(b'%2F')
+    URLsplit = URL.split(b'%2F') #split by '/'
     if not len(URLsplit) >= 3 or not URLsplit[2] == b"open.spotify.com":
         return render_template('request_song.html', error='INVALID URL: Not from Spotify')
     if not len(URLsplit) >= 4 or not URLsplit[3] == b'track':
         return render_template('request_song.html', error='INVALID URL: URL not from a track')
-    URI = URLsplit[-1].split(b'%3F')[0]
+    URI = URLsplit[-1].split(b'%3F')[0] #split by '?'
     if not URI or not len(URI) == 22:
         return render_template('request_song.html', error='INVALID URL: Invalid track ID')
     return redirect('/playlist_gen')

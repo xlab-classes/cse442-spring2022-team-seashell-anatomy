@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, redirect, request, render_template
+<<<<<<< HEAD:views/rec.py
+from flask import Blueprint, jsonify, redirect, request, render_template, session
 #from numpy import insert
 from db import songs
 from db import populate
@@ -12,7 +13,6 @@ import string
 share_list = []
 
 rec_app = Blueprint('rec_app', __name__, template_folder='../static')
-
 
 @rec_app.route('/playlist_gen')
 def playlist_gen():
@@ -41,29 +41,18 @@ def request_song():
     return redirect('/playlist_gen')
 
 
-# attribute: a parameter for the spotify API
-#   ex: dancability
-#
-#
-# threshold (t): bounds for the parameter to be searched
-# ex: 
-#   if:
-#       danceability = 0.5
-#       threshold = 0.1
-#       
-#   then:
-#       search for danceability in the range 0.4 < danceability < 0.6
-
 @rec_app.route('/generate')
 def generate():
-    t = 0.3  # argument threshold
+
+    t = max(session.get('threshold', 0.3), 0.1)
+    bias = min(session.get('bias', 0.0), 0.1)
 
     args = dict(request.args)
     attrs = []
     for arg in args:
         attr_val = float(args[arg])  # specified attribute value
-        lower = attr_val - t  # lower threshold
-        upper = attr_val + t  # upper threshold
+        lower = attr_val - t + bias  # lower threshold
+        upper = attr_val + t + bias  # upper threshold
         attr_input = (arg, lower, upper)
         attrs.append(attr_input)
 

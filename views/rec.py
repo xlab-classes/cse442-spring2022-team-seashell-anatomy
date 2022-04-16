@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, redirect, request, render_template
 from db import songs
 import json
 import pickle
@@ -13,6 +13,23 @@ share_list = []
 @rec_app.route('/playlist_gen')
 def playlist_gen():
     return render_template('playlist_gen.html', categories=categories)
+
+@rec_app.route('/requestform')
+def request_form():
+    return render_template('request_song.html', error='')
+
+@rec_app.route('/request')
+def request_song():
+    URL = request.query_string
+    URLsplit = URL.split(b'%2F') #split by '/'
+    if not len(URLsplit) >= 3 or not URLsplit[2] == b"open.spotify.com":
+        return render_template('request_song.html', error='INVALID URL: Not from Spotify')
+    if not len(URLsplit) >= 4 or not URLsplit[3] == b'track':
+        return render_template('request_song.html', error='INVALID URL: URL not from a track')
+    URI = URLsplit[-1].split(b'%3F')[0] #split by '?'
+    if not URI or not len(URI) == 22:
+        return render_template('request_song.html', error='INVALID URL: Invalid track ID')
+    return redirect('/playlist_gen')
 
 
 # attribute: a parameter for the spotify API

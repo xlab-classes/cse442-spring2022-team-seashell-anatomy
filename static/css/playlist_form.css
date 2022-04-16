@@ -104,14 +104,14 @@ border-radius: 4px;
   width: 75%;
   text-align: center;
   vertical-align: text-bottom;
-  border-bottom: 2px solid white;
   padding: 20px 10px;
   padding-bottom: 0px;
   font-size: larger;
   outline: none;
   background-color: var(--bg-black);
   border: none;
-  border-bottom: 2px solid var(--fg-black);
+  border-bottom: 2px solid white;
+  color: white;
 }
 
 .requestsong {

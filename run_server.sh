@@ -1,21 +1,5 @@
 #!/bin/bash
 
-if [ $VIRTUAL_ENV != "" ]
-then
-    echo 'activating venv...'
-    source venv/bin/activate
-else
-    echo 'no virtual environment found'
-    echo 'run the command: python -m venv venv'
-    exit 1
-fi
-
-if [ ! -f ".env" ]
-then
-    echo 'no environment found, please initialize .env in main directory'
-    exit 1
-fi
-
 echo 'running tests...'
 
 python -m unittest discover -v

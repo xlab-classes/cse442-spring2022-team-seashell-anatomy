@@ -1,7 +1,27 @@
+from encodings import utf_8
 import numpy as np
 from functools import reduce
 from db import SONG_DATA, ENGINE,shared_playlists
+from spotify_api import get_songs
 #from __init__ import SONG_DATA, ENGINE
+
+
+
+#Merges two dictionaries into one.
+def Merge(dict1, dict2):
+    return(dict2.update(dict1))
+
+def listToString(s): 
+    
+    # initialize an empty string
+    str1 = "" 
+    
+    # traverse in the string  
+    for ele in s: 
+        str1 += ele  
+    
+    # return string  
+    return str1 
 
 def get_song_by_name(song_name):
    s = SONG_DATA.select().where(SONG_DATA.c.song_name == song_name) #SELECT * FROM SONG_DATA WHERE 'song_name' = song_name
@@ -33,8 +53,35 @@ def get_song_by_id(id):
 
    return song_list[0]
 
+def get_song_by_uri(uri):
+   print(uri)
+   s = SONG_DATA.select().where(SONG_DATA.c.id == uri) #SELECT * FROM SONG_DATA WHERE 'id' = isong_d
+   conn = ENGINE.connect()
+   result = conn.execute(s)
+   song_list = []
+
+   #print(song_list)
+
+   for rows in result: #Appends all columns in the table that contain the specific id into song_list
+      song_list.append(dict(rows))
+
+   if(len(song_list) == 0): #If list is empty, the database does not contain this song.
+      print('Insert this song in the database!')
+      return -1
+
+   print("This song is already in the database!")
+   return song_list[0]
+
 def insert_song(id):
-      ins = SONG_DATA.insert().values(uri = id)
+      song_dic =  get_songs.get_one_song(id) #Populates a list of dictionaries containing the song data.
+      song_dic = dict(song_dic)
+
+      Merge(song_dic['song_features'], song_dic) #Takes song features and separates them to match exact formatting.
+      song_dic.pop('song_features')       #Removes the song_features dict from the song data.
+      print(song_dic)
+      song_dic['artist_name'] = listToString(song_dic['artist_name']) #Converts the artist names into a string.
+
+      ins = SONG_DATA.insert().values(**song_dic)
       conn = ENGINE.connect()
       conn.execute(ins)
 

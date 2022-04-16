@@ -5,11 +5,13 @@
 {% block style %}<link rel="stylesheet" href="static/css/playlist_form.css">{% endblock %}
 
 {% block content %}
-    <h1>Request a Song</h1>
-    <form action="/request" method="GET">
-        <input class="songURL" id="songURL" name="songURL" type="text">
-        <label for="songURL">Enter the URL for the song you want to submit</label><br>
-        <p class="error">{{ error }}</p>
-        <input class="submitbutton" type="submit" value="Submit">
-    </form>
+    <div class="requestsong">
+        <h1>Request a Song</h1>
+        <form class="requestform" action="/request" method="GET">
+            <label for="songURL" class="songlabel">Enter the URL for the song you want to submit</label><br>
+            <input class="songURL" id="songURL" name="songURL" type="text"><br>
+            <p class="error">{{ error }}</p>
+            <input class="submitbutton" id="requestsubmit" type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock %}

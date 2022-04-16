@@ -87,6 +87,40 @@ cursor: pointer;
 }
 
 .error {
-color: rgb(231, 48, 48)
+color: rgb(231, 48, 48);
+text-align: center;
 }
 
+.songlabel {
+text-align: center;
+
+}
+
+.songURL {
+width: 75%;
+text-align: center;
+vertical-align: text-bottom;
+border-bottom: 2px solid white;
+padding: 20px 10px;
+padding-bottom: 0px;
+font-size: larger;
+outline: none;
+background-color: var(--bg-black);
+border: none;
+border-bottom: 2px solid var(--fg-black);
+}
+
+.requestsong {
+display: flex;
+flex-flow: column;
+width: 100%;
+align-items: center;
+}
+
+.requestform {
+align-items: center;
+display: flex;
+flex-flow: column;
+width: 100%;
+margin: 0 auto;
+}

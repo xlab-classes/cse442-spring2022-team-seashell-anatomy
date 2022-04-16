@@ -3,7 +3,6 @@ from heapq import merge
 from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-from spotify_api import get_songs
 import pickle
 
 

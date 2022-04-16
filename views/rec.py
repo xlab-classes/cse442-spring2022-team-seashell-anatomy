@@ -1,4 +1,3 @@
-<<<<<<< HEAD:views/rec.py
 from flask import Blueprint, jsonify, redirect, request, render_template, session
 #from numpy import insert
 from db import songs

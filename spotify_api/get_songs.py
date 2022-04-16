@@ -3,7 +3,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import sys
 
-from request_token import regenerate_bearer_token
+from spotify_api.request_token import regenerate_bearer_token
 
 
 regenerate_bearer_token()

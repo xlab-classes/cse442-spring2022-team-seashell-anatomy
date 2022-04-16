@@ -35,11 +35,11 @@ def regenerate_bearer_token():
     bearer_token = f'{token_type} {access_token}'
     print(bearer_token)
 
-    with open('.env', 'r') as file:
+    with open('spotify_api/.env', 'r') as file:
         env = file.read()
         new_env = re.sub('(?<=BEARER_TOKEN=)(.*)', bearer_token, env)
 
-    with open('.env', 'w') as file:
+    with open('spotify_api/.env', 'w') as file:
         file.write(new_env)
 
 

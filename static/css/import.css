@@ -1,0 +1,26 @@
+body{
+    /*color: rgb(20 , 20, 20);*/
+    background-color: rgb(20 , 20, 20);
+}
+
+h1{
+    color:green;
+}
+
+.big-button {
+    color: var(--text-white);
+    transition: background-color 0.2s;
+    background-color: var(--fg-green);
+    border: 2px solid ;
+    border-color: #33AA44;
+    text-decoration: none;
+    height: 150px;
+    width: 700px;
+    font-size:5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

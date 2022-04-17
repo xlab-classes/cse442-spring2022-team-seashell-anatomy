@@ -39,12 +39,4 @@ def upload_file():
             w.close()
             populate.populate_share(j)
             return v.encode()
-    return '''
-    <!doctype html>
-    <title>Upload Your Song List</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template("import.html")

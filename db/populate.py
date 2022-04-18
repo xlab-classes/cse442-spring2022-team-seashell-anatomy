@@ -3,7 +3,6 @@ from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from db import SONG_DATA, ENGINE, shared_playlists
-#from __init__ import SONG_DATA, ENGINE, shared_playlists
 import pickle
 
 # As of now, populate_database will not account for duplicates. If run multiple times there will be columns with the same song in it.

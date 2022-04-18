@@ -6,9 +6,9 @@ from sqlalchemy.orm import sessionmaker
 import pickle
 
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
-load_dotenv(override=True)
+load_dotenv(find_dotenv(), override=True)
 
 #song_dict =  get_songs.get_songs(1000) #Populates a list of dictionaries containing the song data.
 

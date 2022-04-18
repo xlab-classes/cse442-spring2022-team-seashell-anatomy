@@ -1,10 +1,10 @@
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import json
 import argparse
 import os
 import requests
 
-load_dotenv(override=True)
+load_dotenv(find_dotenv(), override=True)
 sp = None
 
 def get_token():

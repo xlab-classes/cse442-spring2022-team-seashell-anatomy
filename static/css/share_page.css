@@ -1,0 +1,28 @@
+body{
+    /*color: rgb(20 , 20, 20);*/
+    background-color: rgb(20 , 20, 20);
+}
+
+h3{
+    color:green;
+}
+
+ul{
+    color:white;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  img {
+    max-width: 100%
+  }
+  .image {
+    flex-basis: 40%
+  }
+  .text {
+    font-size: 30px;
+    padding-left: 20px;
+  }

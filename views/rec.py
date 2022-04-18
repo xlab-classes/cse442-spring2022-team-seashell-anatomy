@@ -91,24 +91,13 @@ def artist_songs():
 @rec_app.route('/share')
 def share():
     global share_list
-    if len(share_list) != 0:
-        share_playlist = songs.get_playlist_with_id(share_list)
-        print(share_playlist)
-        populate.populate_share(share_playlist)
-        share_list = []
-        playlists = songs.get_shared()
-        print(playlists)
-        display = ""
-        for i,p in enumerate(playlists):
-            song_names = []
-            for song in p['playlist']:
-                song_names.append(song['song_name'])
-
-            display += ("<h1>" + "Playlist " + str(i) + "</h1>")
-            display += '<br>'
-            display += str(song_names)
-            display += '<br>'
-            display += '<br>'
+    
+    share_playlist = songs.get_playlist_with_id(share_list)
+    # print(share_playlist)
+    populate.populate_share(share_playlist)
+    share_list = []
+    playlists = songs.get_shared()
+    print(playlists)
             
         return str(display)
     else:

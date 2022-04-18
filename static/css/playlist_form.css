@@ -10,12 +10,12 @@
     --fg-green: rgb(71, 204, 19);
     --fg-green-hover: rgb(66, 194, 16);
 
-    --bg-black: rgb(20, 20, 20);
-    --bg-grey: rgb(150, 150, 150);
-    --bg-dark-black: rgb(36, 36, 36);
-    --bg-green: rgb(122, 231, 48);
-    --bg-green-hover: rgb(71, 204, 19);
-    --song-height: 100px;
+  --bg-black: rgb(20, 20, 20);
+  --bg-grey: rgb(150, 150, 150);
+  --bg-dark-black: rgb(36, 36, 36);
+  --bg-green: rgb(122, 231, 48);
+  --bg-green-hover: rgb(71, 204, 19);
+  --song-height: 100px;
 }
 
 .slider {

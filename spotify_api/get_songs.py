@@ -8,6 +8,8 @@ from spotify_api.request_token import regenerate_bearer_token
 
 regenerate_bearer_token()
 
+
+#regenerate_bearer_token()
 load_dotenv(find_dotenv(), override=True)
 
 headers = {

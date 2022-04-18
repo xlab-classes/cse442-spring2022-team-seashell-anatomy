@@ -67,8 +67,11 @@ def generate():
     letters = string.ascii_letters
     name = ''.join(random.choice(letters) for i in range(10))
     link, pid = playlists.create_playlist(name, name)
-    playlists.add_songs_to_playlist(pid, songlist)
-
+    if link != None:
+        playlists.add_songs_to_playlist(pid, songlist)
+    else:
+        link=''
+    
     return render_template(
         'playlist_ret.html', 
         playlist=playlist,

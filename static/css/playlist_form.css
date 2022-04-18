@@ -59,7 +59,6 @@ border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
   padding: 1rem 1rem;
 }
 
@@ -71,13 +70,13 @@ border-radius: 4px;
 }
 
 .formtext {
-  min-width: 150px;
+  min-width: 200px;
   text-align: center;
 }
 
 .formbar {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
 }
 
 .submitbutton {

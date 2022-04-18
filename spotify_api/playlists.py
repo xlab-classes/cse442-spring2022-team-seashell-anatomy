@@ -23,7 +23,10 @@ def create_playlist(name, desc):
         "Authorization":"Bearer " + get_token()}
         )
     data = json.loads(response.text)
-    return (data["external_urls"]["spotify"], data["id"])
+    if data.get("external_urls"):
+        return (data["external_urls"]["spotify"], data["id"])
+    else:
+        return (None, None)
 
 def add_songs_to_playlist(pid, song_ids):
     endpoint_url = f"https://api.spotify.com/v1/playlists/{pid}/tracks"

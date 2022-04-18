@@ -11,6 +11,7 @@ import os
 load_dotenv(find_dotenv(), override=True)
 
 #song_dict =  get_songs.get_songs(1000) #Populates a list of dictionaries containing the song data.
+song_dict = {} #initialized as empty until populating the database to avoid errors.
 
 
 

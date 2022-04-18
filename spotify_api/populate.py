@@ -2,8 +2,8 @@ from get_songs import get_songs
 from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-#from db import SONG_DATA, ENGINE, shared_playlists
-from __init__ import SONG_DATA, ENGINE, shared_playlists, song_dict
+from db import SONG_DATA, ENGINE, shared_playlists, song_dict
+#from __init__ import SONG_DATA, ENGINE, shared_playlists, song_dict
 import pickle
 
 # As of now, populate_database will not account for duplicates. If run multiple times there will be columns with the same song in it.
@@ -46,4 +46,4 @@ def populate_share(share_list):
        conn = ENGINE.connect()
        conn.execute(ins)
 
-populate_database(1000)
+#populate_database(1000)

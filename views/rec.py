@@ -29,13 +29,12 @@ def request_song():
         return render_template('request_song.html', error='INVALID URL: Not from Spotify')
     if not len(URLsplit) >= 4 or not URLsplit[3] == b'track':
         return render_template('request_song.html', error='INVALID URL: URL not from a track')
-    URI = URLsplit[-1].split(b'%3F')[0]
+    URI = URLsplit[-1].split(b'%3F')[0] #split by '?'
     if not URI or not len(URI) == 22:
         return render_template('request_song.html', error='INVALID URL: Invalid track ID')
-    print(URI)
 
-    if songs.get_song_by_id(str(URI)) == -1:
-        songs.insert_song(URI)
+    if songs.get_song_by_uri(URI.decode('utf-8')) == -1:
+        songs.insert_song(URI.decode('utf-8'))
     
     return redirect('/playlist_gen')
 
@@ -85,7 +84,7 @@ def artist_songs():
     artist_name = request.args.get('a', type=str)
     song_list = songs.get_song_by_artist(artist_name)
     for song in song_list:
-        song['genre_list'] = pickle.loads(song['genre_list'])
+        song['genre_list'] = song['genre_list'] #Took out pickle.loads since the values in the database are lists (apparently).
     return jsonify(song_list), 200
 
 

@@ -43,6 +43,39 @@ def parse_track(track):
     }
 
 
+def get_one_song(id):
+    track_url = f'https://api.spotify.com/v1/tracks/{id}'
+    features_url = f'https://api.spotify.com/v1/audio-features/{id}'
+
+    track_response = requests.get(track_url,headers=headers)
+    json_response = track_response.json()
+    track = json_response
+
+    features = requests.get(features_url, headers=headers)
+    artists_url = track['artists'][0]['href']
+    artist = requests.get(artists_url, headers=headers)
+
+    if features.status_code != 200:
+        print(features.text)
+        raise ValueError
+
+    if artist.status_code != 200:
+        print(artist.text)
+        raise ValueError
+
+
+    print(f'GET {track["name"]}')
+
+    return {
+        'song_name': track['name'],
+        'artist_name': track['artists'][0]['name'],
+        'song_id': track['id'],
+        'song_features': features.json(),
+        'cover_url': track['album']['images'][1]['url'],
+        'genre_list': artist.json()['genres']
+    }
+
+
 def get_songs_by_year(year, limit=None):
     url = f'https://api.spotify.com/v1/search?q=year%3D{year}&type=track'
     url += '&limit=10'

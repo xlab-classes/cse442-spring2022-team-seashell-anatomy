@@ -99,6 +99,4 @@ def share():
     playlists = songs.get_shared()
     print(playlists)
             
-        return str(display)
-    else:
-        return "No songs were shared yet".encode()
+    return render_template("share.html", title="Shared Playlists", songs=playlists)

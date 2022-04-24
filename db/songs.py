@@ -5,9 +5,8 @@ from db import SONG_DATA, ENGINE,shared_playlists
 from spotify_api import get_songs
 #from __init__ import SONG_DATA, ENGINE
 import random
-
-
-
+from views import rec
+import json
 #Merges two dictionaries into one.
 def Merge(dict1, dict2):
     return(dict2.update(dict1))
@@ -146,6 +145,13 @@ def get_songs_by_attrs(attrs):
         song_attrs.append(get_songs_by_attr(attr, min, max))
 
     result = set_and(song_attrs)
+    print(rec.prev_songs())
+    old = json.loads(rec.prev_songs())
+    #print("result type", type(result))
+    #print(type(result[0]))
+    for s in result:
+       if s['id'] in old:
+          result.remove(s)
     if len(result) > 10:
         return random.choices(result, k=10)
     else:

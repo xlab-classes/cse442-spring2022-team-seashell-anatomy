@@ -44,11 +44,8 @@
 .fpl_container {
   border: 2px solid var(--text-green);
   margin-top: 30px!important;
+  display: grid;
   margin-bottom: 30px;
-}
-
-.fpl_container:hover .pl_container {
-  display: block;
 }
 
 .fpl_container h1 {
@@ -58,6 +55,42 @@
 .pl_container {
   display: none;
   border-top: 2px solid var(--text-green);
+}
+
+.pl_header {
+  animation-name: none;
+  height: 100%;
+  animation-fill-mode: forwards;
+}
+
+.p1_header:not(:hover) {
+  animation-name: pl_inactive_bg;
+  animation-duration: 500ms;
+}
+
+.p1_header h1:not(:hover) {
+  animation-name: pl_inactive_bg;
+  animation-duration: 500ms;
+}
+
+.pl_header:hover {
+  animation-name: pl_hover_bg;
+  animation-duration: 500ms;
+}
+
+.pl_header h1:hover ~ .pl_header {
+  animation-name: pl_hover_bg;
+  animation-duration: 500ms;
+}
+
+@keyframes pl_hover_bg {
+  from {background-color: inherit;}
+  to {background-color: var(--bg-dark-black);}
+}
+
+@keyframes pl_inactive_bg {
+  from {background-color: var(--bg-dark-black);}
+  to {background-color: inherit;}
 }
 
 .l_container {

@@ -147,7 +147,7 @@ def get_songs_by_attrs(attrs):
 
     result = set_and(song_attrs)
     if len(result) > 10:
-        return random.choices(result, k=10)
+        return np.random.choice(result, size=10, replace=False)
     else:
         return result
 

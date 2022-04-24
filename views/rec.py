@@ -42,19 +42,31 @@ def request_song():
 @rec_app.route('/generate')
 def generate():
 
-    t = max(session.get('threshold', 0.3), 0.1)
-    bias = min(session.get('bias', 0.0), 0.1)
+    t = max(session.get('threshold', 0.8), 0.1)
+    bias = max(min(session.get('bias', 0.0), 0.1), -0.1)
+    print(t, bias)
 
     args = dict(request.args)
-    attrs = []
-    for arg in args:
-        attr_val = float(args[arg])  # specified attribute value
-        lower = attr_val - t + bias  # lower threshold
-        upper = attr_val + t + bias  # upper threshold
-        attr_input = (arg, lower, upper)
-        attrs.append(attr_input)
+
+    def gen_attrs():
+        attrs = []
+        for arg in args:
+            attr_val = float(args[arg])  # specified attribute value
+            lower = attr_val - t + bias  # lower threshold
+            upper = attr_val + t + bias  # upper threshold
+            attr_input = (arg, lower, upper)
+            attrs.append(attr_input)
+        return attrs
+
+    attrs = gen_attrs()
 
     playlist = songs.get_songs_by_attrs(attrs)
+    while len(playlist) < 10:
+        t += 0.1
+        attrs = gen_attrs()
+        playlist = songs.get_songs_by_attrs(attrs)
+        print(len(playlist))
+
 
     for e in playlist:
         json_format = {"id": e["id"], "song_name": e["song_name"], "song_id": e["song_id"]}
@@ -64,7 +76,7 @@ def generate():
     for song in playlist:
         songlist.append(song["id"])
     letters = string.ascii_letters
-    name = ''.join(random.choice(letters) for i in range(10))
+    name = ''.join(random.choice(letters) for _ in range(10))
     link, pid = playlists.create_playlist(name, name)
     if link != None:
         playlists.add_songs_to_playlist(pid, songlist)

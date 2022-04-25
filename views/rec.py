@@ -43,7 +43,7 @@ def request_song():
 
 @rec_app.route('/generate')
 def generate():
-
+    share_list = []
     t = max(session.get('threshold', 0.8), 0.1)
     bias = max(min(session.get('bias', 0.0), 0.1), -0.1)
     print(t, bias)

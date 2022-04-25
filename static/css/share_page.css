@@ -74,6 +74,7 @@
 }
 
 .pl_header:hover {
+  cursor: pointer;
   animation-name: pl_hover_bg;
   animation-duration: 500ms;
 }

@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, session
 from db import ENGINE, SONG_DATA, populate, songs
-from views import static, rec, upvotes
+from views import static, rec, upvotes, auth
 import random
 
 import os, json
@@ -15,6 +15,7 @@ app.secret_key = str(random.randint(0, 5))
 app.register_blueprint(static.static_app)
 app.register_blueprint(rec.rec_app)
 app.register_blueprint(upvotes.upvotes_app)
+app.register_blueprint(auth.auth_app)
 
 UPLOAD_FOLDER = './save/'
 

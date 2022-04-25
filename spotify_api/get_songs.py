@@ -4,7 +4,7 @@ import os
 import sys
 
 from spotify_api.request_token import regenerate_bearer_token
-
+from spotify_api.playlists import get_token
 
 #regenerate_bearer_token()
 
@@ -12,13 +12,16 @@ from spotify_api.request_token import regenerate_bearer_token
 #regenerate_bearer_token()
 load_dotenv(find_dotenv(), override=True)
 
-headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': os.environ.get('BEARER_TOKEN')
-}
+def getheaders():
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + get_token()
+    }
+    return headers
 
 def parse_track(track):
+    headers = getheaders()
     features_url = f'https://api.spotify.com/v1/audio-features/{track["id"]}'
     artists_url = track['artists'][0]['href']
     features = requests.get(features_url, headers=headers)
@@ -46,6 +49,7 @@ def parse_track(track):
 
 
 def get_one_song(id):
+    headers = getheaders()
     track_url = f'https://api.spotify.com/v1/tracks/{id}'
     features_url = f'https://api.spotify.com/v1/audio-features/{id}'
 
@@ -79,6 +83,7 @@ def get_one_song(id):
 
 
 def get_songs_by_year(year, limit=None):
+    headers = getheaders()
     url = f'https://api.spotify.com/v1/search?q=year%3D{year}&type=track'
     url += '&limit=10'
 

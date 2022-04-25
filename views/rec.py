@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect, request, render_template, session
+from flask import Blueprint, jsonify, redirect, request, render_template, session, make_response
 #from numpy import insert
 from db import songs
 from db import populate
@@ -70,9 +70,24 @@ def generate():
         print(len(playlist))
 
 
+    # print(playlist)
+
+    cookie_song_list = []
     for e in playlist:
         json_format = {"id": e["id"], "song_name": e["song_name"], "song_id": e["song_id"]}
+        cookie_song_list.append(e["id"])
         share_list.append(json_format)
+
+    # handling cookies
+    # adding cookies
+    if request.cookies.get("old_songs"):
+        new_list = json.loads(request.cookies.get("old_songs"))
+        for i in new_list:
+            cookie_song_list.append(i)
+    
+    # removing old playlists
+    #for i in so
+    #print("cookie id list", cookie_song_list)
 
     songlist = []
     for song in playlist:
@@ -85,13 +100,24 @@ def generate():
     else:
         link=''
     
-    return render_template(
+
+    response = make_response(render_template(
         'playlist_ret.html', 
         playlist=playlist,
         splink=link,
         categories=[x['name'] for x in categories]
-    )
+    ))
 
+    response.set_cookie("old_songs", json.dumps(cookie_song_list))
+
+    return response
+
+def prev_songs():
+    if request.cookies.get('old_songs'):
+        return request.cookies.get('old_songs')
+    else:
+        return str([])
+    
 
 @rec_app.route('/artist', methods=['GET'])
 def artist_songs():
@@ -121,6 +147,7 @@ def share():
         print("Populating...")
     
     share_list = []
-    #print(playlists)
+    playlists = songs.get_shared()
+    # print(playlists)
             
     return render_template("share.html", title="Shared Playlists", songs=playlists)

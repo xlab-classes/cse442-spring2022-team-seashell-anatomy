@@ -3,12 +3,40 @@ import json
 import argparse
 import os
 import requests
+import time
+import base64
 
 load_dotenv(find_dotenv(), override=True)
 sp = None
 
+state = os.getenv("state")
+redirect_uri = os.getenv("redirect_uri")
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
+
 def get_token():
-    return str(os.getenv("TOKEN"))
+    print(os.environ["refresh_time"])
+    if float(os.environ["refresh_time"]) < time.time():
+        pass
+    else:
+        update_token()  
+    return str(os.getenv("access_token"))
+
+def update_token():
+    url = "https://accounts.spotify.com/api/token"    
+    param = {
+        "grant_type": "refresh_token",
+        "refresh_token": os.environ["refresh"]
+    }
+    auth = "Basic " + base64.b64encode((client_id + ":" + client_secret).encode("ascii")).decode("ascii")
+    header = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": auth
+    }
+    response = requests.post(url, data=param, headers=header)
+    r = response.json()
+    os.environ["access_token"] = r["access_token"]
+    os.environ["refresh_time"] = str(time.time() + int(r["expires_in"]))
 
 def create_playlist(name, desc):
     user_id = os.getenv("USERNAME")

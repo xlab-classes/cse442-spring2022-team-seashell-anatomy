@@ -15,8 +15,9 @@ client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 
 def get_token():
-    print(os.environ["refresh_time"])
-    if float(os.environ["refresh_time"]) < time.time():
+    if not os.getenv("refresh_time"):
+        return None
+    if float(os.getenv("refresh_time")) < time.time():
         pass
     else:
         update_token()  

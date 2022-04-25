@@ -1,31 +1,29 @@
 {% extends "nav.html" %}
 
-    <head>
-        <title>Shared Playlists</title>
-        <link rel="stylesheet" href="static/css/share_page.css">
-    </head>
-    <body>
-    {% block content %}
+{% block title %}Shared Playlists{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="static/css/share_page.css">{% endblock %}
+
+{% block content %}
+    <div class="l_container">
         {% for playlist in songs %}
-        <h1>
-             playlist: {{ playlist.id_number }}
-        </h1>
-        <ul>
-            
-            {% for song in playlist.playlist %}
-            <div class="container">
-            <div class="img">
-                <img src="{{ song.cover_url }}" width="100" height="100">
-            </div>
-            <div class="text">
-                <p> {{ song.song_name }} </p>
-            </div>
-            </div>
+        <div class="fpl_container">
+        <div class="pl_header" onclick="hideToggle(this)"><h1>playlist: {{ playlist.id_number }}</h1></div>
+        <div class="pl_container">
+            <ul class="pl_song_list">
+                {% for song in playlist.playlist %}
+                    <div class="container">
+                        <img src="{{ song.cover_url }}">
+                        <p class="title">{{ song.song_name }}</p></td>
+                        <p class="artist" id="{{ song.artist_name }}">{{ song.artist_name }}</p>
+                    </div>
                 <!-- <li>{{ song.song_name }}</li> -->
-            {% endfor %}
-        </ul>
-        <hr size="8" width="100%" color="green">
+                {% endfor %}
+            </ul>
+        <!-- <hr size="8" width="100%" color="green"> -->
+        </div>
+        </div>
 	    {% endfor %}
-	    
-    </body>
+    </div>
+    <script src="static/js/share_page.js"></script>
 {% endblock %}

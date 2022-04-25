@@ -6,7 +6,7 @@ import sys
 from spotify_api.request_token import regenerate_bearer_token
 
 
-regenerate_bearer_token()
+#regenerate_bearer_token()
 
 
 #regenerate_bearer_token()

@@ -5,6 +5,7 @@ from db import SONG_DATA, ENGINE,shared_playlists
 from spotify_api import get_songs
 #from __init__ import SONG_DATA, ENGINE
 import random
+import pickle
 
 
 
@@ -72,6 +73,26 @@ def get_song_by_uri(uri):
 
    print("This song is already in the database!")
    return song_list[0]
+
+def check_playlist(playlist):
+   song_list = []
+
+   s = shared_playlists.select().where(shared_playlists.c.playlist == playlist)
+   conn = ENGINE.connect()
+   result = conn.execute(s)
+
+   for rows in result: #Appends all columns in the table that contain the specific id into song_list
+        song_list.append(dict(rows))
+        #print(rows)
+   
+   #print(song_list)
+   if len(song_list) > 0:
+        print("This playlist has already been shared!")
+        return -1
+   
+   else:
+      return song_list
+
 
 def insert_song(id):
       song_dic =  get_songs.get_one_song(id) #Populates a list of dictionaries containing the song data.

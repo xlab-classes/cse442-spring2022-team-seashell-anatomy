@@ -35,7 +35,9 @@ def request_song():
 
     if songs.get_song_by_uri(URI.decode('utf-8')) == -1:
         songs.insert_song(URI.decode('utf-8'))
-    
+    else:
+        return render_template('request_song.html', error='This song is already in the database!')
+
     return redirect('/playlist_gen')
 
 
@@ -103,12 +105,22 @@ def artist_songs():
 @rec_app.route('/share')
 def share():
     global share_list
+    playlists = songs.get_shared()
+    
+    if len(share_list) == 0:
+        return render_template("share.html", title="Shared Playlists", songs=playlists)
     
     share_playlist = songs.get_playlist_with_id(share_list)
-    # print(share_playlist)
-    populate.populate_share(share_playlist)
+    #print(share_playlist)
+    #print(share_list)
+
+    if songs.check_playlist(share_playlist) == -1:
+        print("Playlist is a duplicate!")
+    else:
+        populate.populate_share(share_playlist)
+        print("Populating...")
+    
     share_list = []
-    playlists = songs.get_shared()
-    print(playlists)
+    #print(playlists)
             
     return render_template("share.html", title="Shared Playlists", songs=playlists)

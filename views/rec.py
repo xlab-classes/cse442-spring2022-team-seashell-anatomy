@@ -43,7 +43,9 @@ def request_song():
 
 @rec_app.route('/generate')
 def generate():
+    global share_list
 
+    share_list = []
     t = max(session.get('threshold', 0.8), 0.1)
     bias = max(min(session.get('bias', 0.0), 0.1), -0.1)
     print(t, bias)
@@ -77,6 +79,8 @@ def generate():
         json_format = {"id": e["id"], "song_name": e["song_name"], "song_id": e["song_id"]}
         cookie_song_list.append(e["id"])
         share_list.append(json_format)
+
+    print(share_list)
 
     # handling cookies
     # adding cookies

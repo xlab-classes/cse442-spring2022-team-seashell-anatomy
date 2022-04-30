@@ -40,10 +40,16 @@ def populate_database(num_songs):
        conn = ENGINE.connect()
        conn.execute(ins)
 
-def populate_share(share_list):
+def populate_share(share_list, attr):
     #pickle.dumps(share_list)
 
-    ins = shared_playlists.insert().values(playlist = share_list)
+    ins = shared_playlists.insert().values(
+        playlist = share_list,
+        acousticness = attr['acousticness'],
+        danceability = attr['danceability'],
+        energy = attr['energy'],
+        valance = attr['valance']
+    )
     conn = ENGINE.connect()
     conn.execute(ins)
 

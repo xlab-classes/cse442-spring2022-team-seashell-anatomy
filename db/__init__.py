@@ -55,7 +55,11 @@ SONG_DATA = Table(
 shared_playlists = Table(
    'shared_playlists', META, 
    Column('id_number', Integer, primary_key = True),
-   Column('playlist', PickleType)
+   Column('playlist', PickleType),
+   Column('acousticness', Float),
+   Column('danceability', Float),
+   Column('energy', Float),
+   Column('valence', Float)
 )
 
 META.create_all(ENGINE)

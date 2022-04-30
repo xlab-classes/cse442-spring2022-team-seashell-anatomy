@@ -8,7 +8,25 @@
     <div class="l_container">
         {% for playlist in songs %}
         <div class="fpl_container">
-        <div class="pl_header" onclick="hideToggle(this)"><h1>playlist: {{ playlist.id_number }}</h1></div>
+        <div class="pl_header" onclick="hideToggle(this)">
+            <h1>playlist: {{ playlist.id_number }}</h1>
+            <div class="parameter">
+                <h3>{{ playlist.acousticness }}</h3>
+                <p>acousticness</p>
+            </div>
+            <div class="parameter">
+                <h3>{{ playlist.danceability }}</h3>
+                <p>dancability</p>
+            </div>
+            <div class="parameter">
+                <h3>{{ playlist.energy }}</h3>
+                <p>energy</p>
+            </div>
+            <div class="parameter">
+                <h3>{{ playlist.valance }}</h3>
+                <p>valence</p>
+            </div>
+        </div>
         <div class="pl_container">
             <ul class="pl_song_list">
                 {% for song in playlist.playlist %}

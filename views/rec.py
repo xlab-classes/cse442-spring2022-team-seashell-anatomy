@@ -136,7 +136,22 @@ def artist_songs():
 def share():
     global share_list
     playlists = songs.get_shared()
-    
+    attr = {}
+    prevURL = request.referrer
+    splitURL = prevURL.split('/')[1].split('?')
+
+    if(splitURL[0] == 'generate'):
+        for strelem in splitURL[1].split('&'):
+            eqsplit = strelem.split('=')
+            attr[eqsplit[0]] = float(eqsplit[1])
+    else:
+        attr = {
+            'acousticness': 0.0,
+            'danceability': 0.0,
+            'energy': 0.0,
+            'valance': 0.0
+        }
+
     if len(share_list) == 0:
         return render_template("share.html", title="Shared Playlists", songs=playlists)
     
@@ -147,7 +162,7 @@ def share():
     if songs.check_playlist(share_playlist) == -1:
         print("Playlist is a duplicate!")
     else:
-        populate.populate_share(share_playlist)
+        populate.populate_share(share_playlist, attr)
         print("Populating...")
     
     share_list = []

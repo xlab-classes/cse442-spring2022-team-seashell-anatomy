@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request, render_template, session, make_response
 #from numpy import insert
 from db import songs
-from db import populate
+# from db import populate
 import json
 import pickle
 from views import categories
@@ -72,15 +72,13 @@ def generate():
         print(len(playlist))
 
 
-    # print(playlist)
+    print(playlist)
 
     cookie_song_list = []
     for e in playlist:
         json_format = {"id": e["id"], "song_name": e["song_name"], "song_id": e["song_id"]}
         cookie_song_list.append(e["id"])
         share_list.append(json_format)
-
-    print(share_list)
 
     # handling cookies
     # adding cookies
@@ -89,26 +87,23 @@ def generate():
         for i in new_list:
             cookie_song_list.append(i)
     
-    # removing old playlists
-    #for i in so
-    #print("cookie id list", cookie_song_list)
 
-    songlist = []
-    for song in playlist:
-        songlist.append(song["id"])
-    letters = string.ascii_letters
-    name = ''.join(random.choice(letters) for _ in range(10))
-    link, pid = playlists.create_playlist(name, name)
-    if link != None:
-        playlists.add_songs_to_playlist(pid, songlist)
-    else:
-        link=''
+    #  songlist = []
+    #  for song in playlist:
+        #  songlist.append(song["id"])
+    #  letters = string.ascii_letters
+    #  name = ''.join(random.choice(letters) for _ in range(10))
+    #  link, pid = playlists.create_playlist(name, name)
+    #  if link != None:
+        #  playlists.add_songs_to_playlist(pid, songlist)
+    #  else:
+        #  link=''
     
 
     response = make_response(render_template(
         'playlist_ret.html', 
         playlist=playlist,
-        splink=link,
+        # splink=link,
         categories=[x['name'] for x in categories]
     ))
 
@@ -147,7 +142,7 @@ def share():
     if songs.check_playlist(share_playlist) == -1:
         print("Playlist is a duplicate!")
     else:
-        populate.populate_share(share_playlist)
+        # populate.populate_share(share_playlist)
         print("Populating...")
     
     share_list = []

@@ -1,12 +1,12 @@
-from flask import Flask, request, render_template, session
-from db import ENGINE, SONG_DATA, populate, songs
-from views import static, rec, upvotes, auth
+import json
+import os
 import random
 
-import os, json
 from flask import Flask, request
+from flask import render_template
 from werkzeug.utils import secure_filename
-from db import populate
+
+from views import static, rec, upvotes, auth
 
 app = Flask(__name__)
 app.secret_key = str(random.randint(0, 5))
@@ -40,6 +40,5 @@ def upload_file():
             w = open("./save/" + filename, "w")
             w.write("")
             w.close()
-            populate.populate_share(j)
             return v.encode()
     return render_template("import.html")

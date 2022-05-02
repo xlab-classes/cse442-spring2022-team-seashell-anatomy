@@ -1,9 +1,9 @@
-from spotify_api.get_songs import get_songs
+from get_songs import get_songs
 from sqlalchemy import Float, PickleType, create_engine
 from sqlalchemy import MetaData, Table, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
-from db import SONG_DATA, ENGINE, shared_playlists
-from db.songs import check_playlist
+from db import SONG_DATA, ENGINE, shared_playlists, song_dict
+#from __init__ import SONG_DATA, ENGINE, shared_playlists, song_dict
 import pickle
 
 # As of now, populate_database will not account for duplicates. If run multiple times there will be columns with the same song in it.
@@ -27,7 +27,6 @@ def listToString(s):
     return str1 
 
 def populate_database(num_songs):
-    song_dict =  get_songs(num_songs) #Populates a list of dictionaries containing the song data.
 
     for f in song_dict:
        Merge(f['song_features'], f) #Takes song features and separates them to match exact formatting.
@@ -41,10 +40,10 @@ def populate_database(num_songs):
        conn.execute(ins)
 
 def populate_share(share_list):
-    #pickle.dumps(share_list)
+       pickle.dumps(share_list)
 
-    ins = shared_playlists.insert().values(playlist = share_list)
-    conn = ENGINE.connect()
-    conn.execute(ins)
+       ins = shared_playlists.insert().values(playlist = share_list)
+       conn = ENGINE.connect()
+       conn.execute(ins)
 
-#populate_database(10)
+#populate_database(1000)

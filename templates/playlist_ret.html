@@ -18,7 +18,7 @@
                 <a href="https://open.spotify.com/track/{{ song.song_id }}">
                         {{ song.song_name }}
                 </a></p></td>
-                <a class="artist" id="{{ song.artist_name }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
+                <a class="artist" id="{{ song.artist_id }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
                 <i class="like bi bi-check-square"></i>
         </div>
         {% endfor %}

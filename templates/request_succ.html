@@ -1,0 +1,25 @@
+{% extends "nav.html" %}
+
+    <head>
+        <title>Shared Playlists</title>
+        <link rel="stylesheet" href="static/css/share_page.css">
+    </head>
+    <body>
+    {% block content %}
+        <h1>
+             The following song has been added to the database:
+        </h1>
+        <ul>
+            <div class="container">
+            <div class="img">
+                <img src="{{ cover_url }}" width="100" height="100">
+            </div>
+            <div class="text">
+                <p> {{ song_name }} </p>
+            </div>
+            </div>
+        </ul>
+        <hr size="8" width="100%" color="green">
+	    
+    </body>
+{% endblock %}

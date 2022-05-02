@@ -38,7 +38,12 @@ def request_song():
     else:
         return render_template('request_song.html', error='This song is already in the database!')
 
-    return redirect('/playlist_gen')
+    #return redirect('/playlist_gen')
+    print(songs.get_request_song(URI.decode('utf-8')))
+    play = songs.get_request_song(URI.decode('utf-8'))
+
+    return render_template('request_succ.html',title = "Shared Playlists", song_name = play.get('song_name'), cover_url = play.get('cover_url'))
+
 
 
 @rec_app.route('/generate')
@@ -113,7 +118,7 @@ def generate():
     ))
 
     response.set_cookie("old_songs", json.dumps(cookie_song_list))
-
+    print(playlist)
     return response
 
 def prev_songs():

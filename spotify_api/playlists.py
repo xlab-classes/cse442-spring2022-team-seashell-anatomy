@@ -37,14 +37,14 @@ def create_playlist(name, desc):
     user_id = os.getenv("USERNAME")
     endpoint_url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
     request_body = json.dumps({
-              "name": name,
-              "description": desc,
-              "public": True
-            })
+        "name": name,
+        "description": desc,
+        "public": True
+    })
     response = requests.post(url = endpoint_url, data = request_body, headers={
         "Content-Type":"application/json",
         "Authorization": get_token()}
-    )
+                             )
     data = json.loads(response.text)
     if data.get("external_urls"):
         return (data["external_urls"]["spotify"], data["id"])
@@ -57,12 +57,12 @@ def add_songs_to_playlist(pid, song_ids):
     for song in song_ids:
         uris.append("spotify:track:" + song)
     request_body = json.dumps({
-              "uris" : uris
-            })
+        "uris" : uris
+    })
     response = requests.post(url = endpoint_url, data = request_body, headers={
         "Content-Type":"application/json",
-        "Authorization":"Bearer " + get_token()}
-        )
+        "Authorization":get_token()}
+                             )
 
 def create_playlist_from_songs():
     pass

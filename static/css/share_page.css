@@ -1,106 +1,117 @@
 .pl_song_list {
-    color:white;
+        color:white;
 }
 
 .container {
-  border: 2px solid var(--text-green);
-  display: grid;
-  grid-template-columns: 100px repeat(3, 1fr);
-  gap: 10%;
-  margin-top: 20px!important;
-  margin-bottom: 20px;
-  align-items: center;
-  justify-content: start;
-  width: 95%;
+        border: 2px solid var(--text-green);
+        display: grid;
+        grid-template-columns: 100px repeat(3, 1fr);
+        gap: 10%;
+        margin-top: 20px!important;
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: start;
+        width: 95%;
 }
 .container img {
-  max-width: var(--song-height);
-  max-height: var(--song-height);
-  object-fit: cover;
-  display: block;
+        max-width: var(--song-height);
+        max-height: var(--song-height);
+        object-fit: cover;
+        display: block;
 }
 .container p {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 }
 
 .container .title {
-  color: var(--text-green);
-  font-family: inherit;
-  font-weight: 300;
-  text-align: center;
-  font-size: 1.3rem;
+        color: var(--text-green);
+        font-family: inherit;
+        font-weight: 300;
+        text-align: center;
+        font-size: 1.3rem;
 }
 
 .container .artist {
-  color: var(--text-green);
-  font-family: inherit;
-  font-weight: 300;
-  text-align: center;
-  font-size: 1.3rem;
+        color: var(--text-green);
+        font-family: inherit;
+        font-weight: 300;
+        text-align: center;
+        font-size: 1.3rem;
 }
 
 .fpl_container {
-  border: 2px solid var(--text-green);
-  margin-top: 30px!important;
-  display: grid;
-  margin-bottom: 30px;
+        border: 2px solid var(--text-green);
+        margin-top: 30px!important;
+        display: grid;
+        margin-bottom: 30px;
 }
 
 .fpl_container h1 {
-  margin-left: 5%;
+        margin-left: 5%;
 }
 
 .pl_container {
-  display: none;
-  border-top: 2px solid var(--text-green);
+        display: none;
+        border-top: 2px solid var(--text-green);
 }
 
 .pl_header {
-  animation-name: none;
-  height: 100%;
-  animation-fill-mode: forwards;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1.5fr repeat(4, 1fr) 1fr;
+        animation-name: none;
+        height: 100%;
+        animation-fill-mode: forwards;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1.5fr repeat(4, 1fr) 1fr;
 }
 
 .p1_header:not(:hover) {
-  animation-name: pl_inactive_bg;
-  animation-duration: 500ms;
+        animation-name: pl_inactive_bg;
+        animation-duration: 500ms;
 }
 
 .p1_header h1:not(:hover) {
-  animation-name: pl_inactive_bg;
-  animation-duration: 500ms;
+        animation-name: pl_inactive_bg;
+        animation-duration: 500ms;
 }
 
 .pl_header:hover {
-  cursor: pointer;
-  animation-name: pl_hover_bg;
-  animation-duration: 500ms;
+        cursor: pointer;
+        animation-name: pl_hover_bg;
+        animation-duration: 500ms;
 }
 
 .pl_header h1:hover ~ .pl_header {
-  animation-name: pl_hover_bg;
-  animation-duration: 500ms;
+        animation-name: pl_hover_bg;
+        animation-duration: 500ms;
 }
 
 @keyframes pl_hover_bg {
-  from {background-color: inherit;}
-  to {background-color: var(--bg-dark-black);}
+        from {background-color: inherit;}
+        to {background-color: var(--bg-dark-black);}
 }
 
 @keyframes pl_inactive_bg {
-  from {background-color: var(--bg-dark-black);}
-  to {background-color: inherit;}
+        from {background-color: var(--bg-dark-black);}
+        to {background-color: inherit;}
 }
 
-.l_container {
-  display: block;
-}
+/* .l_container { */
+        /* display: block; */
+/* } */
 
-.parameter {
-  text-align: center;
+
+.submitbutton {
+        background-color: var(--bg-black);
+        border: 2px solid var(--text-green);
+        color: var(--text-green);
+        padding: 15px 30px;
+        margin-left: 70%;
+        font-size: 30px;
+        cursor: pointer;
+        font-family: inherit;
+        vertical-align: top;
+        display: inline-block;
+
 }

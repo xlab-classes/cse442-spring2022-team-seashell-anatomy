@@ -5,6 +5,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<h1>{{ name }}</h1>
 <div class="song_list">
         <div class="song-row header">
                 <p class="title"></p>
@@ -40,9 +41,10 @@
         <a href="{{ splink }}">
                 <input class="submitbutton" type="submit" value="Export to Spotify">
         </a>
-        <a href="/share">
+        <form class="formaaa" action="/share" method="POST">
                 <input class="submitbutton" type="submit" value="Share">
-        </a>
+                <input type="hidden" name="sharedata" value='{{ share }}'>
+        </form>
 </div>
 <script src="static/js/row_height.js"></script>
 <script src="static/js/toggle_upvote.js"></script>

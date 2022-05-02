@@ -5,43 +5,46 @@
 {% block style %}<link rel="stylesheet" href="static/css/share_page.css">{% endblock %}
 
 {% block content %}
-    <div class="l_container">
+<div class="l_container">
         {% for playlist in songs %}
         <div class="fpl_container">
-        <div class="pl_header" onclick="hideToggle(this)">
-            <h1>playlist: {{ playlist.id_number }}</h1>
-            <div class="parameter">
-                <h3>{{ playlist.acousticness }}</h3>
-                <p>acousticness</p>
-            </div>
-            <div class="parameter">
-                <h3>{{ playlist.danceability }}</h3>
-                <p>dancability</p>
-            </div>
-            <div class="parameter">
-                <h3>{{ playlist.energy }}</h3>
-                <p>energy</p>
-            </div>
-            <div class="parameter">
-                <h3>{{ playlist.valance }}</h3>
-                <p>valence</p>
-            </div>
+                <div class="pl_header" onclick="hideToggle(this)">
+                        <h1>{{ playlist.playlist_name }}</h1> 
+                        <a href="google.com">
+                                <input class="submitbutton" type="submit" value="Export to Spotify">
+                        </a></div><!--
+                        <div class="parameter">
+                                <h3>{{ playlist.acousticness }}</h3>
+                                <p>acousticness</p>
+                        </div>
+                        <div class="parameter">
+                                <h3>{{ playlist.danceability }}</h3>
+                                <p>dancability</p>
+                        </div>
+                        <div class="parameter">
+                                <h3>{{ playlist.energy }}</h3>
+                                <p>energy</p>
+                        </div>
+                        <div class="parameter">
+                                <h3>{{ playlist.valance }}</h3>
+                                <p>valence</p>
+                        </div> -->
         </div>
         <div class="pl_container">
-            <ul class="pl_song_list">
-                {% for song in playlist.playlist %}
-                    <div class="container">
-                        <img src="{{ song.cover_url }}">
-                        <p class="title">{{ song.song_name }}</p></td>
+                <ul class="pl_song_list">
+                        {% for song in playlist.playlist %}
+                        <div class="container">
+                                <img src="{{ song.cover_url }}">
+                                <p class="title">{{ song.song_name }}</p></td>
                         <p class="artist" id="{{ song.artist_name }}">{{ song.artist_name }}</p>
-                    </div>
-                <!-- <li>{{ song.song_name }}</li> -->
-                {% endfor %}
-            </ul>
-        <!-- <hr size="8" width="100%" color="green"> -->
+                        </div>
+                        <!-- <li>{{ song.song_name }}</li> -->
+                        {% endfor %}
+                </ul>
+                <!-- <hr size="8" width="100%" color="green"> -->
         </div>
-        </div>
-	    {% endfor %}
-    </div>
-    <script src="static/js/share_page.js"></script>
+</div>
+{% endfor %}
+</div>
+<script src="static/js/share_page.js"></script>
 {% endblock %}

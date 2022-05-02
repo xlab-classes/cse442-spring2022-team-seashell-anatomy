@@ -6,7 +6,13 @@
 
 {% block content %}
     <form action="/generate" method="GET">
-        {% for category in categories %}
+        <div class="greenborder">
+	<div class="parentform">
+		<h2 class="formtext childform category-header">playlist name</h2>
+		<input class="formbar childform textform" type="text" id="name" name="name">
+	</div>
+	</div>
+	{% for category in categories %}
 	<div class="greenborder">
 	<div class="parentform">
 	    <div class="formtext childform">
@@ -19,12 +25,12 @@
                    max="{{ category.max }}" 
                    step="{{ category.step }}"
 		   class="slider">
-
             <label for="{{ option }}">{{ option }}</label>
 	    </div>
 	</div>
 	</div>
         {% endfor %}
+	
 	<br><br>
         <div>
             <input class="submitbutton" type="submit" value="Submit">

@@ -8,7 +8,7 @@
     <div class="l_container">
         {% for playlist in songs %}
         <div class="fpl_container">
-        <div class="pl_header" onclick="hideToggle(this)"><h1>playlist: {{ playlist.id_number }}</h1></div>
+        <div class="pl_header" onclick="hideToggle(this)"><h1>{{ playlist.playlist_name }}</h1></div>
         <div class="pl_container">
             <ul class="pl_song_list">
                 {% for song in playlist.playlist %}

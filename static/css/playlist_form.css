@@ -69,6 +69,13 @@ border-radius: 4px;
   margin: 0;
 }
 
+.textform {
+  background-color: var(--fg-black);
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+}
+
 .formtext {
   min-width: 200px;
   text-align: center;

@@ -105,6 +105,15 @@ def insert_song(id):
       conn = ENGINE.connect()
       conn.execute(ins)
 
+def  get_request_song(id):
+      song_dic =  get_songs.get_one_song(id) #Populates a list of dictionaries containing the song data.
+      song_dic = dict(song_dic)
+
+      Merge(song_dic['song_features'], song_dic) #Takes song features and separates them to match exact formatting.
+      song_dic.pop('song_features')       #Removes the song_features dict from the song data.
+      print(song_dic)
+      song_dic['artist_name'] = listToString(song_dic['artist_name']) #Converts the artist names into a string.
+      return song_dic
 
 def get_shared():
    s= shared_playlists.select()

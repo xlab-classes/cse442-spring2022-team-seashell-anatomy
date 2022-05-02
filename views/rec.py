@@ -137,19 +137,40 @@ def artist_songs():
 
 @rec_app.route('/share', methods=['GET', 'POST'])
 def share():
-    playlists = songs.get_shared()
+    playlists_share = songs.get_shared()
     if request.method == "GET":
-        return render_template("share.html", title="Shared Playlists", songs=playlists)
+        return render_template("share.html", title="Shared Playlists", songs=playlists_share)
     
     sharejson = request.form.get("sharedata")
     sharedata = json.loads(sharejson) 
     share_list = sharedata["playlist"]
     name = sharedata["name"]
-    playlists = songs.get_shared()
+    playlists_share = songs.get_shared()
     
     share_playlist = songs.get_playlist_with_id(share_list)
-    print(share_playlist)
+    # print("\n---------------------------------------------------------playlist start-------------------------------------------\n")
+    # print(playlists_share)
+    # print("\n---------------------------------------------------------playlist end---------------------------------------------\n")
     #print(share_list)
+    letters = string.ascii_letters
+    name = ''.join(random.choice(letters) for _ in range(10))
+    link, pid = playlists.create_playlist(name, "resonance")
+    newSongList = []
+    print(playlists_share)
+    for pl in playlists_share:
+        songIDs = []
+        for s in pl["playlist"]:
+            songIDs.append(s["song_id"])
+        name = ''.join(random.choice(letters) for _ in range(24))
+        link, pid = playlists.create_playlist(name, "resonance")
+        pl["pid"] = pid
+        if link != None:
+            playlists.add_songs_to_playlist(pid, songIDs)
+    
+    
+    
+    # print("\n--------------------------playlists---------------------------\n")
+    # print(playlists)
     if songs.check_playlist(share_playlist) == -1:
         print("Playlist is a duplicate!")
     else:
@@ -157,7 +178,8 @@ def share():
         print("Populating...")
     
     share_list = []
+    print(type(playlists_share))
     # playlists = songs.get_shared()
     # print(playlists)
             
-    return render_template("share.html", title="Shared Playlists", songs=playlists)
+    return render_template("share.html", title="Shared Playlists", songs=playlists_share)

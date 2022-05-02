@@ -11,7 +11,7 @@ function getArtistPage(song_artist) {
 
     const xhttp = new XMLHttpRequest();
     let url = "artist?a=" + song_artist.id
-    let artist_url = "https://open.spotify.com/search/" + song_artist.id;
+    let artist_url = "https://open.spotify.com/artist/" + song_artist.id;
     link_elem.setAttribute("href", artist_url);
     img_elem.setAttribute("src", "static/images/kazi_shadman.jpg");
 

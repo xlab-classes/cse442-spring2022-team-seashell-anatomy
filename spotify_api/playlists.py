@@ -1,10 +1,10 @@
-from dotenv import load_dotenv, find_dotenv
-import json
-import argparse
-import os
-import requests
-import time
 import base64
+import json
+import os
+import time
+
+import requests
+from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv(), override=True)
 sp = None
@@ -15,13 +15,7 @@ client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 
 def get_token():
-    if not os.getenv("refresh_time"):
-        return None
-    if float(os.getenv("refresh_time")) < time.time():
-        pass
-    else:
-        update_token()  
-    return str(os.getenv("access_token"))
+    return os.environ.get("BEARER_TOKEN")
 
 def update_token():
     url = "https://accounts.spotify.com/api/token"    
@@ -49,8 +43,8 @@ def create_playlist(name, desc):
             })
     response = requests.post(url = endpoint_url, data = request_body, headers={
         "Content-Type":"application/json",
-        "Authorization":"Bearer " + get_token()}
-        )
+        "Authorization": get_token()}
+    )
     data = json.loads(response.text)
     if data.get("external_urls"):
         return (data["external_urls"]["spotify"], data["id"])

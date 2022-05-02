@@ -5,44 +5,46 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="song_list">
+<div class="song_list">
         <div class="song-row header">
-	    <p class="title"></p>
-            <p class="title">Song Name</p>
-            <p class="title">Artist Name</p>
-	    <p class="title">Upvote</p>
+                <p class="title"></p>
+                <p class="title">Song Name</p>
+                <p class="title">Artist Name</p>
+                <p class="title">Upvote</p>
         </div>
         {% for song in playlist %}
         <div class="song-row song" song_id="{{ song.song_id }}">
-            <img src="{{ song.cover_url }}">
-            <p class="title">{{ song.song_name }}</p></td>
-            <a class="artist" id="{{ song.artist_name }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
-            <i class="like bi bi-check-square"></i>
+                <img src="{{ song.cover_url }}"><p class="title">
+                <a href="https://open.spotify.com/track/{{ song.song_id }}">
+                        {{ song.song_name }}
+                </a></p></td>
+                <a class="artist" id="{{ song.artist_id }}" onclick="getArtistPage(this)">{{ song.artist_name }}</a>
+                <i class="like bi bi-check-square"></i>
         </div>
         {% endfor %}
-    </div>
-    <div class="overlay_container">
+</div>
+<div class="overlay_container">
         <div class="background_block" id="background_block" onclick="hideArtistPage()"></div>
         <div class="artist_overlay" id="artist_overlay">
-            <div class="artist_header">
-                <img id="artist_image" src="static/images/kazi_shadman.jpg">
-                <div class="name" id="name">INSERT ARTIST NAME HERE</div>
-                <a class="link" id="link">Spotify Link</a>
-            </div>
-            <div class="artist_songs"></div>
+                <div class="artist_header">
+                        <img id="artist_image" src="static/images/kazi_shadman.jpg">
+                        <div class="name" id="name">INSERT ARTIST NAME HERE</div>
+                        <a class="link" id="link">Spotify Link</a>
+                </div>
+                <div class="artist_songs"></div>
         </div>
-    </div>
+</div>
 
-    <div>
-	<input class="submitbutton" type="submit" value="Refresh Playlist" onclick="history.go(0)">
-	<a href="{{ splink }}">
-		<input class="submitbutton" type="submit" value="Export to Spotify">
-	</a>
-    <a href="/share">
-	    <input class="submitbutton" type="submit" value="Share">
-    </a>
-    </div>
-    <script src="static/js/row_height.js"></script>
-    <script src="static/js/toggle_upvote.js"></script>
-    <script src="static/js/artist_page.js"></script>
+<div>
+        <input class="submitbutton" type="submit" value="Refresh Playlist" onclick="history.go(0)">
+        <a href="{{ splink }}">
+                <input class="submitbutton" type="submit" value="Export to Spotify">
+        </a>
+        <a href="/share">
+                <input class="submitbutton" type="submit" value="Share">
+        </a>
+</div>
+<script src="static/js/row_height.js"></script>
+<script src="static/js/toggle_upvote.js"></script>
+<script src="static/js/artist_page.js"></script>
 {% endblock %}

@@ -6,8 +6,6 @@ import sys
 from spotify_api.request_token import regenerate_bearer_token
 from spotify_api.playlists import get_token
 
-#regenerate_bearer_token()
-
 
 #regenerate_bearer_token()
 load_dotenv(find_dotenv(), override=True)
@@ -41,6 +39,7 @@ def parse_track(track):
     return {
         'song_name': track['name'],
         'artist_name': track['artists'][0]['name'],
+        'artist_id': track['artists'][0]['id'],
         'song_id': track['id'],
         'song_features': features.json(),
         'cover_url': track['album']['images'][1]['url'],

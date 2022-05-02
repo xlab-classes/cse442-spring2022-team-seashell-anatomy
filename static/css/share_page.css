@@ -97,3 +97,18 @@
 .l_container {
   display: block;
 }
+
+
+.submitbutton {
+  background-color: var(--bg-black);
+  border: 2px solid var(--text-green);
+  color: var(--text-green);
+  padding: 15px 30px;
+  margin-left: 70%;
+  font-size: 30px;
+  cursor: pointer;
+  font-family: inherit;
+  vertical-align: top;
+  display: inline-block;
+  
+}

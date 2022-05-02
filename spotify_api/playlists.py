@@ -15,13 +15,7 @@ client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 
 def get_token():
-    if not os.getenv("refresh_time"):
-        return None
-    if float(os.getenv("refresh_time")) < time.time():
-        pass
-    else:
-        update_token()  
-    return str(os.getenv("access_token"))
+    return os.environ.get("BEARER_TOKEN")
 
 def update_token():
     url = "https://accounts.spotify.com/api/token"    
@@ -49,7 +43,7 @@ def create_playlist(name, desc):
             })
     response = requests.post(url = endpoint_url, data = request_body, headers={
         "Content-Type":"application/json",
-        "Authorization":"Bearer " + get_token()}
+        "Authorization":get_token()}
         )
     data = json.loads(response.text)
     if data.get("external_urls"):
@@ -67,7 +61,7 @@ def add_songs_to_playlist(pid, song_ids):
             })
     response = requests.post(url = endpoint_url, data = request_body, headers={
         "Content-Type":"application/json",
-        "Authorization":"Bearer " + get_token()}
+        "Authorization":get_token()}
         )
 
 def create_playlist_from_songs():

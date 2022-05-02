@@ -8,7 +8,10 @@
     <div class="l_container">
         {% for playlist in songs %}
         <div class="fpl_container">
-        <div class="pl_header" onclick="hideToggle(this)"><h1>{{ playlist.playlist_name }}</h1></div>
+        <div class="pl_header" onclick="hideToggle(this)"><h1>{{ playlist.playlist_name }}</h1> 
+        <a href="google.com">
+            <input class="submitbutton" type="submit" value="Export to Spotify">
+        </a></div>
         <div class="pl_container">
             <ul class="pl_song_list">
                 {% for song in playlist.playlist %}

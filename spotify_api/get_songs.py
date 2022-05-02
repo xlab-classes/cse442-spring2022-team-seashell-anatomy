@@ -16,7 +16,7 @@ def getheaders():
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': "Bearer " + get_token()
+        'Authorization': get_token()
     }
     return headers
 

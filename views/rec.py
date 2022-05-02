@@ -137,7 +137,7 @@ def artist_songs():
 
 @rec_app.route('/share', methods=['GET', 'POST'])
 def share():
-
+    playlists = songs.get_shared()
     if request.method == "GET":
         return render_template("share.html", title="Shared Playlists", songs=playlists)
     
@@ -157,7 +157,7 @@ def share():
         print("Populating...")
     
     share_list = []
-    playlists = songs.get_shared()
+    # playlists = songs.get_shared()
     # print(playlists)
             
     return render_template("share.html", title="Shared Playlists", songs=playlists)

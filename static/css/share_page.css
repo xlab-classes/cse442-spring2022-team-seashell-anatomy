@@ -104,3 +104,8 @@
 .parameter {
   text-align: center;
 }
+
+.parameter h3 {
+  text-overflow: hidden;
+  max-width: 4ch;
+}

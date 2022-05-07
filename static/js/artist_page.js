@@ -7,18 +7,19 @@ let link_elem = overlay.children[0].children[2]
 let song_list = overlay.children[1]
 
 function getArtistPage(song_artist) {
-    name_elem.innerHTML = song_artist.id;
+    name_elem.innerHTML = song_artist.getAttribute("artist");
 
     const xhttp = new XMLHttpRequest();
-    let url = "artist?a=" + song_artist.id
-    let artist_url = "https://open.spotify.com/artist/" + song_artist.id;
+    let url = "artist?a=" + song_artist.getAttribute("artist_id");
+    let artist_url = "https://open.spotify.com/artist/" + song_artist.getAttribute("artist_id");
     link_elem.setAttribute("href", artist_url);
     img_elem.setAttribute("src", "static/images/kazi_shadman.jpg");
 
     xhttp.onreadystatechange = function() {
+        console.log(`GET status: ${this.status} ${this.response}`)
         if(this.status == 200 && this.readyState == 4) {
             let parsed = JSON.parse(this.response);
-            console.log(parsed)
+            console.log(`JSON response: ${parsed}`)
             for(let i = 0; i < parsed.length; i += 1) {
                 song = parsed[i]
                 song_list.innerHTML += "<div class=\"artist_song\"><img src=" + song['cover_url'] + "><p class=\"title\">" + song["song_name"] + "</p></td></div>"
@@ -27,6 +28,7 @@ function getArtistPage(song_artist) {
         }
     };
 
+    console.log(`GET /${url}`)
     xhttp.open("GET", url);
     xhttp.send();
 

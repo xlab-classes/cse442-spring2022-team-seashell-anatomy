@@ -36,8 +36,6 @@ def request_song():
     else:
         return render_template('request_song.html', error='This song is already in the database!')
 
-    #return redirect('/playlist_gen')
-    print(songs.get_request_song(URI.decode('utf-8')))
     play = songs.get_request_song(URI.decode('utf-8'))
 
     return render_template('request_succ.html',title = "Shared Playlists", song_name = play.get('song_name'), cover_url = play.get('cover_url'))
@@ -48,8 +46,6 @@ def generate():
     share_list = []
     t = max(session.get('threshold', 0.8), 0.1)
     bias = max(min(session.get('bias', 0.0), 0.1), -0.1)
-    print(t, bias)
-
     args = dict(request.args)
 
     name = args.pop('name')
@@ -64,16 +60,11 @@ def generate():
         return attrs
 
     attrs = gen_attrs()
-
     playlist = songs.get_songs_by_attrs(attrs)
     while len(playlist) < 10:
         t += 0.1
         attrs = gen_attrs()
         playlist = songs.get_songs_by_attrs(attrs)
-        print(len(playlist))
-
-
-    print(playlist)
 
     cookie_song_list = []
     for e in playlist:
@@ -107,7 +98,6 @@ def generate():
     }
 
     sharejson = json.dumps(sharedata)
-    print(sharejson)
     response = make_response(render_template(
         'playlist_ret.html', 
         playlist=playlist,
@@ -118,7 +108,6 @@ def generate():
     ))
 
     response.set_cookie("old_songs", json.dumps(cookie_song_list))
-    print(playlist)
     return response
 
 def prev_songs():
@@ -130,8 +119,8 @@ def prev_songs():
 
 @rec_app.route('/artist', methods=['GET'])
 def artist_songs():
-    artist_name = request.args.get('a', type=str)
-    song_list = songs.get_song_by_artist(artist_name)
+    artist_id = request.args.get('a', type=str)
+    song_list = songs.get_song_by_artist_id(artist_id)
     for song in song_list:
         song['genre_list'] = song['genre_list'] #Took out pickle.loads since the values in the database are lists (apparently).
     return jsonify(song_list), 200
@@ -168,15 +157,10 @@ def share():
         return render_template("share.html", title="Shared Playlists", songs=playlists_share)
 
     share_playlist = songs.get_playlist_with_id(share_list)
-    # print("\n---------------------------------------------------------playlist start-------------------------------------------\n")
-    # print(playlists_share)
-    # print("\n---------------------------------------------------------playlist end---------------------------------------------\n")
-    #print(share_list)
     letters = string.ascii_letters
     name = ''.join(random.choice(letters) for _ in range(10))
     link, pid = playlists.create_playlist(name, "resonance")
     newSongList = []
-    print(playlists_share)
     for pl in playlists_share:
         songIDs = []
         for s in pl["playlist"]:
@@ -189,17 +173,11 @@ def share():
     
     
     
-    # print("\n--------------------------playlists---------------------------\n")
-    # print(playlists)
     if songs.check_playlist(share_playlist) == -1:
         print("Playlist is a duplicate!")
     else:
         populate.populate_share(share_playlist, name)
         print("Populating...")
 
-    share_list = []
-    print(type(playlists_share))
-    # playlists = songs.get_shared()
-    # print(playlists)
             
     return render_template("share.html", title="Shared Playlists", songs=playlists_share)

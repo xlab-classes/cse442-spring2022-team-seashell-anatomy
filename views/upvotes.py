@@ -27,9 +27,6 @@ def toggle_upvote():
         db_song = songs.get_song_by_id(song_id)
         bias = sum([db_song[cat['name']] - threshold for cat in categories]) * 0.1
         
-        print(bias, threshold)
-
-
         session['bias'] = min(max(session.get('bias', 0.0) + bias, 0.3), -0.3)
     elif song['content'] == 'downvote':
         new_rating = prev_rating - 1
@@ -39,7 +36,5 @@ def toggle_upvote():
     ins = SONG_DATA.insert().values({"rating": max(0, new_rating)})
     conn = ENGINE.connect()
     conn.execute(ins)
-
-    print(f'{song} sent to db!')
 
     return '200'

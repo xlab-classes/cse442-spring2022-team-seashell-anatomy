@@ -26,7 +26,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/import', methods=['GET', 'POST'])
 def upload_file():
-    print("enters here")
     if request.method == 'POST':
 
         file = request.files['file']

@@ -150,6 +150,19 @@ def get_song_by_artist(artist_name):
 
    return song_list
 
+def get_song_by_artist_id(artist_id):
+   s = SONG_DATA.select().where(SONG_DATA.c.artist_id == artist_id) #SELECT * FROM SONG_DATA WHERE 'id' = isong_d
+   conn = ENGINE.connect()
+   result = conn.execute(s)
+   song_list = []
+
+   for rows in result: #Appends all columns in the table that contain the artist into song_list
+      song_list.append(dict(rows))
+
+   if(len(song_list) == 0): #If list is empty, the database does not contain this song.
+      print('This song is not in the database!')
+
+   return song_list
 
 # input list of lists, output intersection of lists
 def set_and(lists):

@@ -139,7 +139,7 @@ def artist_songs():
 @rec_app.route('/share', methods=['GET', 'POST'])
 def share():
 
-    playlists = songs.get_shared()
+    playlists_share = songs.get_shared()
     attr = {}
     prevURL = request.referrer
     splitURL = prevURL.split('/')[1].split('?')
@@ -161,11 +161,11 @@ def share():
     sharedata = json.loads(sharejson) 
     share_list = sharedata["playlist"]
     name = sharedata["name"]
-    playlists = songs.get_shared()
+    playlists_share = songs.get_shared()
 
 
     if len(share_list) == 0:
-        return render_template("share.html", title="Shared Playlists", songs=playlists)
+        return render_template("share.html", title="Shared Playlists", songs=playlists_share)
 
     share_playlist = songs.get_playlist_with_id(share_list)
     # print("\n---------------------------------------------------------playlist start-------------------------------------------\n")

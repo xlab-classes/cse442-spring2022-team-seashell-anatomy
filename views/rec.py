@@ -138,8 +138,14 @@ def artist_songs():
 
 @rec_app.route('/share', methods=['GET', 'POST'])
 def share():
-
+    sharejson = request.form.get("sharedata")
     playlists_share = songs.get_shared()
+
+    if (sharejson == None):
+        return render_template("share.html", title="Shared Playlists", songs=playlists_share)
+
+ 
+
     attr = {}
     prevURL = request.referrer
     splitURL = prevURL.split('/')[1].split('?')
@@ -176,7 +182,7 @@ def share():
     name = ''.join(random.choice(letters) for _ in range(10))
     link, pid = playlists.create_playlist(name, "resonance")
     newSongList = []
-    print(playlists_share)
+    #print(playlists_share)
     for pl in playlists_share:
         songIDs = []
         for s in pl["playlist"]:

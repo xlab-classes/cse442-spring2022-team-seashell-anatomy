@@ -48,7 +48,6 @@ def generate():
 
     args = dict(request.args)
 
-    name = args.pop('name')
     def gen_attrs():
         attrs = []
         for arg in args:
@@ -92,8 +91,7 @@ def generate():
     for song in playlist:
         songlist.append(song["id"])
     letters = string.ascii_letters
-    if not name:
-        name = ''.join(random.choice(letters) for _ in range(10))
+    name = ''.join(random.choice(letters) for _ in range(10))
     link, pid = playlists.create_playlist(name, "Created with Seashell Resonance!")
     if link != None:
         playlists.add_songs_to_playlist(pid, songlist)
@@ -144,7 +142,7 @@ def share():
     sharejson = request.form.get("sharedata")
     sharedata = json.loads(sharejson) 
     share_list = sharedata["playlist"]
-    name = sharedata["name"]
+    name = request.form.get("name")
     playlists = songs.get_shared()
     
     share_playlist = songs.get_playlist_with_id(share_list)

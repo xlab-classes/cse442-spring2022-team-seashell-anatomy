@@ -5,7 +5,10 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>{{ name }}</h1>
+<form class="formaaa" action="/share" method="POST">
+<div class="centerbox">
+<input type="text" name="name" class="textinput" placeholder="Playlist name here...">
+</div>
     <div class="song_list">
         <div class="song-row header">
 	    <p class="title"></p>
@@ -39,7 +42,6 @@
 	<a href="{{ splink }}">
 		<input class="submitbutton" type="submit" value="Export to Spotify">
 	</a>
-    <form class="formaaa" action="/share" method="POST">
 	    <input class="submitbutton" type="submit" value="Share">
 	    <input type="hidden" name="sharedata" value='{{ share }}'>
     </form>

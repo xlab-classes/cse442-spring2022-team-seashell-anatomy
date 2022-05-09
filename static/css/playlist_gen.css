@@ -226,6 +226,18 @@
   display: inline-block;
 }
 
+.centerbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textinput {
+    height:35px;
+    font-size:18pt;
+    width:30%;
+}
+
 .formaaa {
   display: inline-block;
 }

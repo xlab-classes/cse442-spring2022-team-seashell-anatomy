@@ -3,10 +3,10 @@ from urllib.parse import urlencode
 import base64
 import requests
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import time
 
-load_dotenv()
+load_dotenv(find_dotenv(), override=True)
 auth_app = Blueprint('auth_app', __name__, template_folder='../static')
 
 state = os.getenv("state")

@@ -5,6 +5,7 @@ import time
 
 import requests
 from dotenv import load_dotenv, find_dotenv
+from spotify_api.request_token import regenerate_bearer_token
 
 load_dotenv(find_dotenv(), override=True)
 sp = None
@@ -15,7 +16,7 @@ client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 
 def get_token():
-    return os.environ.get("BEARER_TOKEN")
+    return regenerate_bearer_token()
 
 def update_token():
     url = "https://accounts.spotify.com/api/token"    

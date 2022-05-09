@@ -34,6 +34,8 @@ def regenerate_bearer_token():
 
     bearer_token = f'{token_type} {access_token}'
     print(bearer_token)
+    return bearer_token
+
 
 if __name__ == '__main__':
     regenerate_bearer_token()
